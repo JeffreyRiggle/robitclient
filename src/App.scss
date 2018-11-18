@@ -1,0 +1,33 @@
+@import './Common.scss';
+
+.App {
+    display: flex;
+    height: 100vh;
+    flex: 1 1 auto;
+    flex-direction: column;
+
+    header {
+        flex: 0 0 auto;
+        text-align: center;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 auto;
+    
+        .sidebar {
+            flex: 0 0 auto;
+            margin-right: 32px;
+        }
+    
+        .content-area {
+            flex: 1 1 auto;
+        }
+    }
+
+    footer {
+        flex: 0 0 auto;
+    }
+}
+

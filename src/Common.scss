@@ -1,0 +1,14 @@
+.input-option {
+    display: flex;
+    flex: 1 1 auto;
+    padding: 8px;
+
+    .lbl {
+        flex: 0 1 auto;
+        margin-right: 8px;
+    }
+
+    .in {
+        flex: 1 1 auto;
+    }
+}

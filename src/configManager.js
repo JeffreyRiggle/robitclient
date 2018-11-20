@@ -102,6 +102,18 @@ const getActions = () => {
     return config.actions;
 }
 
+const getActionById = (id) => {
+    let retVal;
+
+    config.actions.forEach(v => {
+        if (!retVal && v.id === id) {
+            retVal = v;
+        }
+    })
+
+    return retVal;
+}
+
 const addAction = (permission) => {
     config.actions.push(permission);
 }
@@ -134,6 +146,7 @@ export {
     addDeferredAction,
     removeDeferredAction,
     getActions,
+    getActionById,
     addAction,
     removeAction
 }

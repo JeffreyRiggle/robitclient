@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import {getActions, addAction, removeAction} from './configManager';
 
 class Actions extends Component {
@@ -25,6 +26,7 @@ class Actions extends Component {
             <div>
               <span>{action.id}</span>
               <button onClick={this.removeAction(action)}>Remove</button>
+              <Link to={`/actions/${action.id}`}>Edit</Link>
             </div>
           );
         })}

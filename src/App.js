@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import General from './General';
 import Actions from './Actions';
+import Action from './Action';
 import DeferedActions from './DeferedActions';
 import Music from './Music';
 import Security from './Security';
@@ -28,7 +29,8 @@ class App extends Component {
             </div>
             <div className="content-area">
               <Route exact path="/" component={General}/>
-              <Route path="/actions" component={Actions}/>
+              <Route exact path="/actions" component={Actions}/>
+              <Route path="/actions/:id" component={Action}/>
               <Route path="/deferedActions" component={DeferedActions}/>
               <Route path="/music" component={Music}/>
               <Route path="/security" component={Security}/>

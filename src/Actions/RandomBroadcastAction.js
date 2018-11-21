@@ -1,0 +1,98 @@
+import React, { Component } from 'react';
+
+class RandomBroadcastAction extends Component {
+  constructor(props) {
+    super(props);
+
+    if (!this.props.action.messages) {
+        this.props.action.messages = [];
+    }
+    
+    this.state = {
+      messages: this.props.action.messages || [],
+      message: '',
+      help: this.props.action.help,
+      channelId: this.props.action.channel
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <label>Messages</label>
+          {this.state.messages.map(message => {
+              return (
+                <div>
+                  <span>{message}</span><button onClick={this.removeMessage(message)}>Remove</button>
+                </div>
+              );
+          })}
+          <input type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
+          <button onClick={this.addMessage.bind(this)}>Add Message</button>
+        </div>
+        <div>
+          <label>Help Message</label>
+          <input type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
+        </div>
+        <div>
+          <label>Channel Id or Name (optional)</label>
+          <input type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
+        </div>
+      </div>
+    );
+  }
+
+  updateMessage(event) {
+    let message = event.target.value;
+
+    this.setState({
+      message: message
+    });
+  }
+
+  addMessage() {
+      this.props.action.messages.push(this.state.message);
+      
+      this.setState({
+        messages: this.props.action.messages,
+        message: ''
+      });
+  }
+
+  removeMessage(message) {
+    return () => {
+        let ind = this.props.action.messages.indexOf(message);
+
+        if (ind !== -1) {
+            this.props.action.messages.splice(ind, 1);
+        }
+
+        this.setState({
+            messages: this.props.action.messages
+        });
+    }
+  }
+
+  updateHelp(event) {
+    let help = event.target.value;
+
+    this.props.action.help = help;
+
+    this.setState({
+      help: help
+    });
+  }
+
+  updateChannel(event) {
+    let channel = event.target.value;
+
+    this.props.action.channel = channel;
+
+    this.setState({
+        channelId: channel
+    });
+  }
+}
+
+export default RandomBroadcastAction;

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {getActions, addAction, removeAction} from './configManager';
 
-class Actions extends Component {
+class MultiAction extends Component {
   constructor(props) {
     super(props);
 
+    if (!this.props.action.actions) {
+        this.props.action.actions = [];
+    }
+
     this.state = {
-      actions: getActions(),
+      actions: this.props.action.actions,
       newActionId: ''
     };
   }
@@ -26,7 +29,7 @@ class Actions extends Component {
             <div key={action.id}>
               <span>{action.id}</span>
               <button onClick={this.removeAction(action)}>Remove</button>
-              <Link to={`/actions/${action.id}`}>Edit</Link>
+              <Link to={{ pathname: `/actions/${this.props.action.id}/${action.id}`}}>Edit</Link>
             </div>
           );
         })}
@@ -41,25 +44,29 @@ class Actions extends Component {
   }
 
   addAction() {
-    addAction({
-        id: this.state.newActionId
+    this.props.action.actions.push({
+      id: this.state.newActionId
     });
 
     this.setState({
         newActionId: '',
-        actions: getActions()
+        actions: this.props.action.actions
     });
   }
 
   removeAction(action) {
     return () => {
-        removeAction(action);
+        let ind = this.props.action.actions.indexOf(action);
+
+        if (ind !== -1) {
+            this.props.action.actions.splice(ind, 1);
+        }
 
         this.setState({
-            actions: getActions()
+            actions: this.props.action.actions
         });
     }
   }
 }
 
-export default Actions;
+export default MultiAction;

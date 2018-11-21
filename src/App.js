@@ -30,7 +30,8 @@ class App extends Component {
             <div className="content-area">
               <Route exact path="/" component={General}/>
               <Route exact path="/actions" component={Actions}/>
-              <Route path="/actions/:id" component={Action}/>
+              <Route exact path="/actions/:id" component={Action}/>
+              <Route path="/actions/:rootid/:id" component={Action}/>
               <Route path="/deferedActions" component={DeferedActions}/>
               <Route path="/music" component={Music}/>
               <Route path="/security" component={Security}/>

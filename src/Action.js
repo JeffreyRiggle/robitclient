@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import {getActionById} from './configManager';
+import BroadcastAction from './Actions/BroadcastAction';
+import RandomBroadcastAction from './Actions/RandomBroadcastAction';
+import EmbedAction from './Actions/EmbedAction';
+import HttpAction from './Actions/HttpAction';
+import MultiAction from './Actions/MultiAction';
 
 class Action extends Component {
   constructor(props) {
     super(props);
 
-    let action;
-    if (this.props.match && this.props.match.params && this.props.match.params.id) {
-        action = getActionById(this.props.match.params.id);
-    }
+    this.backLocation = '/actions';
+    let action = this.getAction(this.props.match);
 
     this.action = action;
 
@@ -18,6 +22,33 @@ class Action extends Component {
       message: action && action.message,
       channelId: action && action.channel
     };
+  }
+
+  getAction(match) {
+    if (!match || !match.params || !match.params.id) {
+        return;
+    }
+
+    if (!match.params.rootid) {
+        return getActionById(match.params.id);
+    }
+
+    let root = getActionById(match.params.rootid);
+
+    if (!root) {
+        return;
+    }
+
+    this.backLocation = `/actions/${root.id}`;
+    let retVal;
+
+    root.actions.forEach(act => {
+        if (act.id === match.params.id) {
+            retVal = act;
+        }
+    });
+    
+    return retVal;
   }
 
   render() {
@@ -31,15 +62,16 @@ class Action extends Component {
 
     return (
       <div>
+        <h4><Link to={this.backLocation}>Back</Link></h4>
         <h3>Action {this.state.action && this.state.action.id}</h3>
         <div>
           <label>Type</label>
           <select value={this.state.selectedType} onChange={this.typeChanged.bind(this)}>
-            <option name="broadcast">Broadcast</option>
-            <option name="randombroadcast">Random Broadcast</option>
-            <option name="embed">Embed</option>
-            <option name="http">Http</option>
-            <option name="multiaction">Multi-Action</option>
+            <option value="broadcast">Broadcast</option>
+            <option value="randombroadcast">Random Broadcast</option>
+            <option value="embed">Embed</option>
+            <option value="http">Http</option>
+            <option value="multiaction">Multi-Action</option>
           </select>
           {this.renderTypedAction()}
         </div>
@@ -49,45 +81,26 @@ class Action extends Component {
 
   renderTypedAction() {
       if (this.state.selectedType === 'Broadcast') {
-          return this.renderBroadCast();
+          return <BroadcastAction action={this.action} />
+      }
+
+      if (this.state.selectedType === 'randombroadcast') {
+          return <RandomBroadcastAction action={this.action} />
+      }
+
+      if (this.state.selectedType === 'embed') {
+          return <EmbedAction action={this.action} />
+      }
+
+      if (this.state.selectedType === 'http') {
+          return <HttpAction action={this.action} />
+      }
+
+      if (this.state.selectedType === 'multiaction') {
+          return <MultiAction action={this.action} />
       }
 
       return <div>Something went wrong, cant render type {this.state.selectedType}</div>
-  }
-
-  renderBroadCast() {
-      return (
-        <div>
-          <div>
-            <label>Message</label>
-            <input type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
-          </div>
-          <div>
-            <label>Channel Id or Name (optional)</label>
-            <input type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
-          </div>
-        </div>
-      );
-  }
-
-  updateMessage(event) {
-      let message = event.target.value;
-
-      this.action.message = message;
-
-      this.setState({
-          message: message
-      });
-  }
-
-  updateChannel(event) {
-    let channel = event.target.value;
-
-    this.action.channel = channel;
-
-    this.setState({
-        channelId: channel
-    });
   }
 
   typeChanged(event) {

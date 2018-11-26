@@ -5,10 +5,10 @@ class HttpAction extends Component {
     super(props);
 
     this.state = {
-      method: this.props.action.method,
-      url: this.props.action.url,
-      body: this.props.body,
-      help: this.props.action.help
+      method: this.props.action.action.method,
+      url: this.props.action.action.url,
+      body: this.props.action.action.body,
+      help: this.props.action.action.help
     };
   }
 
@@ -37,7 +37,7 @@ class HttpAction extends Component {
 
   updateMethod(event) {
     let method = event.target.value;
-    this.props.action.method = method;
+    this.props.action.action.method = method;
 
     this.setState({
       method: method
@@ -46,7 +46,7 @@ class HttpAction extends Component {
 
   updateBody(event) {
     let body = event.target.value;
-    this.props.action.body = body;
+    this.props.action.action.body = body;
 
     this.setState({
       body: body
@@ -55,7 +55,7 @@ class HttpAction extends Component {
 
   updateHelp(event) {
     let help = event.target.value;
-    this.props.action.help = help;
+    this.props.action.action.help = help;
 
     this.setState({
       help: help
@@ -64,7 +64,7 @@ class HttpAction extends Component {
 
   updateURL(event) {
     let url = event.target.value;
-    this.props.action.url = url;
+    this.props.action.action.url = url;
 
     this.setState({
         url: url

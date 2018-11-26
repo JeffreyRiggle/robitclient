@@ -5,9 +5,9 @@ class BroadcastAction extends Component {
     super(props);
 
     this.state = {
-      message: this.props.action.message,
-      help: this.props.action.help,
-      channelId: this.props.action.channel
+      message: this.props.action.action.message,
+      help: this.props.action.action.help,
+      channelId: this.props.action.action.channel
     };
   }
 
@@ -33,7 +33,7 @@ class BroadcastAction extends Component {
   updateMessage(event) {
     let message = event.target.value;
 
-    this.props.action.message = message;
+    this.props.action.action.message = message;
 
     this.setState({
       message: message
@@ -43,7 +43,7 @@ class BroadcastAction extends Component {
   updateHelp(event) {
     let help = event.target.value;
 
-    this.props.action.help = help;
+    this.props.action.action.help = help;
 
     this.setState({
       help: help
@@ -53,7 +53,7 @@ class BroadcastAction extends Component {
   updateChannel(event) {
     let channel = event.target.value;
 
-    this.props.action.channel = channel;
+    this.props.action.action.channel = channel;
 
     this.setState({
         channelId: channel

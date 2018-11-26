@@ -6,6 +6,7 @@ import Action from './Action';
 import DeferedActions from './DeferedActions';
 import Music from './Music';
 import Security from './Security';
+import Generator from './Generator';
 
 import './App.scss';
 
@@ -38,7 +39,7 @@ class App extends Component {
             </div>
           </div>
           <footer>
-            <button>Generate</button>
+            <Generator/>
           </footer>
         </div>
       </BrowserRouter>

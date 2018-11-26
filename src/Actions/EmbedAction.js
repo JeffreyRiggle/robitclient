@@ -4,19 +4,10 @@ class EmbedAction extends Component {
   constructor(props) {
     super(props);
 
-    if (!this.props.action.embed) {
-        this.props.action.embed = {};
-    }
-
-    let img = '';
-    if (this.props.action.embed.image) {
-        img = this.props.action.embed.image.url;
-    }
-
     this.state = {
-      title: this.props.action.embed.title,
-      image: img,
-      help: this.props.action.help
+      title: this.props.action.action.embed.title,
+      image: this.props.action.action.embed.image.url,
+      help: this.props.action.action.help
     };
   }
 
@@ -42,7 +33,7 @@ class EmbedAction extends Component {
   updateTitle(event) {
     let title = event.target.value;
 
-    this.props.action.embed.title = title;
+    this.props.action.action.embed.title = title;
 
     this.setState({
       title: title
@@ -52,7 +43,7 @@ class EmbedAction extends Component {
   updateHelp(event) {
     let help = event.target.value;
 
-    this.props.action.help = help;
+    this.props.action.action.help = help;
 
     this.setState({
       help: help
@@ -62,7 +53,7 @@ class EmbedAction extends Component {
   updateImage(event) {
     let img = event.target.value;
 
-    this.props.action.embed.image.url = img;
+    this.props.action.action.embed.image.url = img;
 
     this.setState({
         image: img

@@ -6,6 +6,13 @@ import RandomBroadcastAction from './Actions/RandomBroadcastAction';
 import EmbedAction from './Actions/EmbedAction';
 import HttpAction from './Actions/HttpAction';
 import MultiAction from './Actions/MultiAction';
+import {
+    sanitizeBroadcast, 
+    sanitizeRandomBroadcast, 
+    sanitizeEmbed,
+    sanitizeHttp,
+    sanitizeMulti 
+} from './Actions/actionSanitizer';
 
 class Action extends Component {
   constructor(props) {
@@ -42,7 +49,7 @@ class Action extends Component {
     this.backLocation = `/actions/${root.id}`;
     let retVal;
 
-    root.actions.forEach(act => {
+    root.action.actions.forEach(act => {
         if (act.id === match.params.id) {
             retVal = act;
         }
@@ -81,22 +88,27 @@ class Action extends Component {
 
   renderTypedAction() {
       if (this.state.selectedType === 'Broadcast') {
+          sanitizeBroadcast(this.action);
           return <BroadcastAction action={this.action} />
       }
 
       if (this.state.selectedType === 'randombroadcast') {
+          sanitizeRandomBroadcast(this.action);
           return <RandomBroadcastAction action={this.action} />
       }
 
       if (this.state.selectedType === 'embed') {
+          sanitizeEmbed(this.action);
           return <EmbedAction action={this.action} />
       }
 
       if (this.state.selectedType === 'http') {
+          sanitizeHttp(this.action);
           return <HttpAction action={this.action} />
       }
 
       if (this.state.selectedType === 'multiaction') {
+          sanitizeMulti(this.action);
           return <MultiAction action={this.action} />
       }
 

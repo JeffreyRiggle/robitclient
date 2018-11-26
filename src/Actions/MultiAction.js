@@ -5,12 +5,8 @@ class MultiAction extends Component {
   constructor(props) {
     super(props);
 
-    if (!this.props.action.actions) {
-        this.props.action.actions = [];
-    }
-
     this.state = {
-      actions: this.props.action.actions,
+      actions: this.props.action.action.actions,
       newActionId: ''
     };
   }
@@ -44,26 +40,26 @@ class MultiAction extends Component {
   }
 
   addAction() {
-    this.props.action.actions.push({
+    this.props.action.action.actions.push({
       id: this.state.newActionId
     });
 
     this.setState({
         newActionId: '',
-        actions: this.props.action.actions
+        actions: this.props.action.action.actions
     });
   }
 
   removeAction(action) {
     return () => {
-        let ind = this.props.action.actions.indexOf(action);
+        let ind = this.props.action.action.actions.indexOf(action);
 
         if (ind !== -1) {
-            this.props.action.actions.splice(ind, 1);
+            this.props.action.action.actions.splice(ind, 1);
         }
 
         this.setState({
-            actions: this.props.action.actions
+            actions: this.props.action.action.actions
         });
     }
   }

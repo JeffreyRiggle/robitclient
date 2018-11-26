@@ -1,3 +1,5 @@
+import {save} from './fileSaver';
+
 let config = {
     greeting: "Robit online. Boop Boop",
     audioSources: [],
@@ -114,16 +116,20 @@ const getActionById = (id) => {
     return retVal;
 }
 
-const addAction = (permission) => {
-    config.actions.push(permission);
+const addAction = (action) => {
+    config.actions.push(action);
 }
 
-const removeAction = (permission) => {
-    let ind = config.actions.indexOf(permission);
+const removeAction = (action) => {
+    let ind = config.actions.indexOf(action);
 
     if (ind !== -1) {
         config.actions.splice(ind, 1);
     }
+}
+
+const saveConfig = () => {
+    save(JSON.stringify(config), 'application/json', 'robitconfig.json');
 }
 
 export {
@@ -148,5 +154,6 @@ export {
     getActions,
     getActionById,
     addAction,
-    removeAction
+    removeAction,
+    saveConfig
 }

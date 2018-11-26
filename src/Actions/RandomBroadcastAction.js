@@ -3,16 +3,12 @@ import React, { Component } from 'react';
 class RandomBroadcastAction extends Component {
   constructor(props) {
     super(props);
-
-    if (!this.props.action.messages) {
-        this.props.action.messages = [];
-    }
     
     this.state = {
-      messages: this.props.action.messages || [],
+      messages: this.props.action.action.messages,
       message: '',
-      help: this.props.action.help,
-      channelId: this.props.action.channel
+      help: this.props.action.action.help,
+      channelId: this.props.action.action.channel
     };
   }
 
@@ -52,24 +48,24 @@ class RandomBroadcastAction extends Component {
   }
 
   addMessage() {
-      this.props.action.messages.push(this.state.message);
+      this.props.action.action.messages.push(this.state.message);
       
       this.setState({
-        messages: this.props.action.messages,
+        messages: this.props.action.action.messages,
         message: ''
       });
   }
 
   removeMessage(message) {
     return () => {
-        let ind = this.props.action.messages.indexOf(message);
+        let ind = this.props.action.action.messages.indexOf(message);
 
         if (ind !== -1) {
-            this.props.action.messages.splice(ind, 1);
+            this.props.action.action.messages.splice(ind, 1);
         }
 
         this.setState({
-            messages: this.props.action.messages
+            messages: this.props.action.action.messages
         });
     }
   }
@@ -77,7 +73,7 @@ class RandomBroadcastAction extends Component {
   updateHelp(event) {
     let help = event.target.value;
 
-    this.props.action.help = help;
+    this.props.action.action.help = help;
 
     this.setState({
       help: help
@@ -87,7 +83,7 @@ class RandomBroadcastAction extends Component {
   updateChannel(event) {
     let channel = event.target.value;
 
-    this.props.action.channel = channel;
+    this.props.action.action.channel = channel;
 
     this.setState({
         channelId: channel

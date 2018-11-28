@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import {
   setAccessDeniedMessage, 
   getAccessDeniedMessage, 
   getDefaultUserPermissions,
   addDefaultUserPermission,
-  removeDefaultUserPermission } from './configManager';
+  removeDefaultUserPermission,
+  getAccessForUsers,
+  addAccessUser,
+  removeAccessUser } from './configManager';
 
 class Security extends Component {
   constructor(props) {
@@ -13,7 +17,9 @@ class Security extends Component {
     this.state = {
       accessMessage: getAccessDeniedMessage(),
       defaultRights: getDefaultUserPermissions(),
-      pendingRight: ''
+      pendingRight: '',
+      users: getAccessForUsers(),
+      pendingUser: ''
     };
   }
 
@@ -32,6 +38,20 @@ class Security extends Component {
           })}
           <input type="text" value={this.state.pendingRight} onChange={this.updatePendingRight.bind(this)} />
           <button onClick={this.addPendingRight.bind(this)}>Add Default</button>
+        </div>
+        <div>
+          <p>Users</p>
+          {this.state.users.map(user => {
+            return (
+              <div key={user.name}>
+                <span>{user.name}</span>
+                <button onClick={this.removeUser(user)}>Remove</button>
+                <Link to={`/security/${user.name}`}>Edit</Link>
+              </div>
+            );
+          })}
+          <input type="text" value={this.state.pendingUser} onChange={this.updatePendingUser.bind(this)} />
+          <button onClick={this.addPendingUser.bind(this)}>Add User</button>
         </div>
       </div>
     );
@@ -52,6 +72,12 @@ class Security extends Component {
     });
   }
 
+  updatePendingUser(event) {
+    this.setState({
+      pendingUser: event.target.value
+    });
+  }
+
   addPendingRight() {
     addDefaultUserPermission(this.state.pendingRight);
 
@@ -61,12 +87,34 @@ class Security extends Component {
     });
   }
 
+  addPendingUser() {
+    addAccessUser({
+      name: this.state.pendingUser,
+      rights: []
+    });
+
+    this.setState({
+      pendingUser: '',
+      users: getAccessForUsers()
+    });
+  }
+
   removeRight(right) {
     return () => {
       removeDefaultUserPermission(right);
 
       this.setState({
         defaultRights: getDefaultUserPermissions()
+      });
+    }
+  }
+
+  removeUser(user) {
+    return () => {
+      removeAccessUser(user);
+
+      this.setState({
+        users: getAccessForUsers()
       });
     }
   }

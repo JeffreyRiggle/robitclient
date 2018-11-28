@@ -6,6 +6,7 @@ import Action from './Action';
 import DeferedActions from './DeferedActions';
 import Music from './Music';
 import Security from './Security';
+import UserSecurity from './UserSecurity';
 import Generator from './Generator';
 
 import './App.scss';
@@ -35,7 +36,8 @@ class App extends Component {
               <Route path="/actions/:rootid/:id" component={Action}/>
               <Route path="/deferedActions" component={DeferedActions}/>
               <Route path="/music" component={Music}/>
-              <Route path="/security" component={Security}/>
+              <Route exact path="/security" component={Security}/>
+              <Route exact path="/security/:id" component={UserSecurity}/>
             </div>
           </div>
           <footer>

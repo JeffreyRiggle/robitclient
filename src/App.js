@@ -3,7 +3,7 @@ import { BrowserRouter, Link, Route } from 'react-router-dom';
 import General from './General';
 import Actions from './Actions';
 import Action from './Action';
-import DeferedActions from './DeferedActions';
+import DeferredActions from './DeferredActions';
 import Music from './Music';
 import Security from './Security';
 import UserSecurity from './UserSecurity';
@@ -34,7 +34,7 @@ class App extends Component {
               <Route exact path="/actions" component={Actions}/>
               <Route exact path="/actions/:id" component={Action}/>
               <Route path="/actions/:rootid/:id" component={Action}/>
-              <Route path="/deferedActions" component={DeferedActions}/>
+              <Route path="/deferedActions" component={DeferredActions}/>
               <Route path="/music" component={Music}/>
               <Route exact path="/security" component={Security}/>
               <Route exact path="/security/:id" component={UserSecurity}/>

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import IntervalPicker from './Pickers/IntervalPicker';
+import DailyPicker from './Pickers/DailyPicker';
+import moment from 'moment';
 
 const daily = 'Daily';
 const futureTime = 'FutureTime';
@@ -12,9 +14,21 @@ class Deferred extends Component {
         this.action = this.props.action;
 
         this.state = {
-            selectedType: futureTime,
+            selectedType: this.determineSelectedType(),
             action: this.action.action
         }
+    }
+
+    determineSelectedType() {
+        if (this.action.daily) {
+            return daily;
+        }
+
+        if (this.action.reoccuring) {
+            return reoccuring;
+        }
+
+        return futureTime;
     }
 
     render() {
@@ -33,7 +47,7 @@ class Deferred extends Component {
 
     renderTimePicker() {
         if (this.state.selectedType === daily) {
-            return <div>Daily</div>
+            return <DailyPicker time={this.action.daily} onChange={this.updateDaily.bind(this)}/>
         }
 
         if (this.state.selectedType === futureTime) {
@@ -41,6 +55,10 @@ class Deferred extends Component {
         }
 
         return <IntervalPicker interval={this.action.reoccuring} onChange={this.updateInterval.bind(this)}/>
+    }
+
+    updateDaily(value) {
+        this.action.daily = value;
     }
 
     updateInterval(interval) {
@@ -66,7 +84,7 @@ class Deferred extends Component {
         delete this.action.reoccuring;
 
         if (newType === daily) {
-            this.action.daily = '';
+            this.action.daily = moment().format('HH:mm:ss');
             return;
         }
 
@@ -75,7 +93,7 @@ class Deferred extends Component {
             return;
         }
 
-        this.action.reoccuring = '';
+        this.action.reoccuring = 0;
     }
 }
 

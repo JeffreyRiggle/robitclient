@@ -38,46 +38,54 @@ class IntervalPicker extends Component {
     }
 
     dayChanged(event) {
-        let day = event.target.value;
+        let day = Number(event.target.value);
+
+        if (!Number.isInteger(day)) {
+            return;
+        }
 
         this.setState({
             days: day
         });
-
-        this.updateDate();
     }
 
     hoursChanged(event) {
-        let hour = event.target.value;
+        let hour = Number(event.target.value);
+
+        if (!Number.isInteger(hour)) {
+            return;
+        }
 
         this.setState({
             hours: hour
         });
-
-        this.updateDate();
     }
 
     minutesChanged(event) {
-        let minute = event.target.value;
+        let minute = Number(event.target.value);
+
+        if (!Number.isInteger(minute)) {
+            return;
+        }
 
         this.setState({
             minutes: minute
         });
-
-        this.updateDate();
     }
 
     secondsChanged(event) {
-        let second = event.target.value;
+        let second = Number(event.target.value);
+
+        if (!Number.isInteger(second)) {
+            return;
+        }
 
         this.setState({
             seconds: second
         });
-
-        this.updateDate();
     }
 
-    updateDate() {
+    componentDidUpdate() {
         let newInterval = 0;
 
         if (this.state.days) {
@@ -97,6 +105,10 @@ class IntervalPicker extends Component {
         }
 
         this.interval = newInterval;
+
+        if (this.props.onChange) {
+            this.props.onChange(this.interval);
+        }
     }
 }
 

@@ -40,7 +40,11 @@ class Deferred extends Component {
             return <div>Future</div>
         }
 
-        return <IntervalPicker interval={this.action.reoccuring} />
+        return <IntervalPicker interval={this.action.reoccuring} onChange={this.updateInterval.bind(this)}/>
+    }
+
+    updateInterval(interval) {
+        this.action.reoccuring = interval;
     }
 
     typeChanged(event) {

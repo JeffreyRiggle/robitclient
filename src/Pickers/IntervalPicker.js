@@ -1,17 +1,50 @@
 import React, {Component} from 'react';
 
+const dayInterval = 1 * 24 * 60 * 60 * 1000;
+const hourInterval = 1 * 60 * 60 * 1000;
+const minuteInterval = 1 * 60 * 1000;
+const secondInterval = 1000;
+
 class IntervalPicker extends Component {
     constructor(props) {
         super(props);
 
         this.interval = this.props.interval;
 
-        this.state = {
+        this.state = this.getStateFromInterval(this.interval);
+    }
+
+    getStateFromInterval(interval) {
+        let state = {
             seconds: 0,
             minutes: 0,
             hours: 0,
             days: 0
         };
+
+        let copy = interval;
+
+        while(copy >= dayInterval) {
+            state.days++;
+            copy -= dayInterval
+        }
+
+        while(copy >= hourInterval) {
+            state.hours++;
+            copy -= hourInterval
+        }
+
+        while(copy >= minuteInterval) {
+            state.minutes++;
+            copy -= minuteInterval
+        }
+
+        while(copy >= secondInterval) {
+            state.seconds++;
+            copy -= secondInterval;
+        }
+
+        return state;
     }
 
     render() {

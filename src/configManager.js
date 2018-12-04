@@ -100,6 +100,18 @@ const removeDeferredAction = (permission) => {
     }
 }
 
+const getActionFromDeferredId = (id) => {
+    let retVal;
+
+    config.deferredactions.forEach(v => {
+        if (!retVal && v.id === id) {
+            retVal = v;
+        }
+    });
+
+    return retVal;
+}
+
 const getActions = () => {
     return config.actions;
 }
@@ -151,6 +163,7 @@ export {
     getDeferredActions,
     addDeferredAction,
     removeDeferredAction,
+    getActionFromDeferredId,
     getActions,
     getActionById,
     addAction,

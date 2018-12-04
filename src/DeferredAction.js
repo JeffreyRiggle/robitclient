@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import IntervalPicker from './Pickers/IntervalPicker';
 import DailyPicker from './Pickers/DailyPicker';
 import FuturePicker from './Pickers/FuturePicker';
@@ -42,6 +43,7 @@ class Deferred extends Component {
                     <option value={reoccuring}>Re-Occuring</option>
                 </select>
                 {this.renderTimePicker()}
+                <Link to={`/deferred/action/${this.action.id}`}>Action</Link>
             </div>
         );
     }

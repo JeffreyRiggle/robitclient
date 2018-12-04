@@ -10,6 +10,10 @@ class DeferredActions extends Component {
     this.state = {
       actions: getDeferredActions()
     }
+
+    this.state.actions.forEach((action) => {
+      this.iter = Math.max(this.iter, action.id);
+    });
   }
 
   render() {
@@ -17,7 +21,7 @@ class DeferredActions extends Component {
       <div>
         <h3>Deferred Actions</h3>
         {this.state.actions.map(action => {
-          return <div key={++this.iter}><DeferredAction action={action}/><button onClick={this.removeDeferred(action)}>Remove</button></div>
+          return <div key={action.id}><DeferredAction action={action}/><button onClick={this.removeDeferred(action)}>Remove</button></div>
         })}
         <button onClick={this.addDeferred.bind(this)}>Add Deferred</button>
       </div>
@@ -26,6 +30,7 @@ class DeferredActions extends Component {
 
   addDeferred() {
     addDeferredAction({
+      id: (++this.iter).toString(),
       action: {}
     });
 

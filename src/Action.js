@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {getActionById} from './configManager';
+import {getActionById, getActionFromDeferredId} from './configManager';
 import BroadcastAction from './Actions/BroadcastAction';
 import RandomBroadcastAction from './Actions/RandomBroadcastAction';
 import EmbedAction from './Actions/EmbedAction';
@@ -32,8 +32,13 @@ class Action extends Component {
   }
 
   getAction(match) {
-    if (!match || !match.params || !match.params.id) {
+    if (!match || !match.params || (!match.params.id && !match.params.deferredid)) {
         return;
+    }
+
+    if (match.params.deferredid) {
+        this.backLocation = '/deferredActions';
+        return getActionFromDeferredId(match.params.deferredid);
     }
 
     if (!match.params.rootid) {
@@ -42,12 +47,8 @@ class Action extends Component {
 
     let root = getActionById(match.params.rootid);
 
-    if (!root) {
-        return;
-    }
-
-    this.backLocation = `/actions/${root.id}`;
     let retVal;
+    this.backLocation = `/actions/${root.id}`;
 
     root.action.actions.forEach(act => {
         if (act.id === match.params.id) {

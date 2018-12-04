@@ -24,7 +24,7 @@ class App extends Component {
               <ul>
                 <li><Link to="/">General</Link></li>
                 <li><Link to="/actions">Actions</Link></li>
-                <li><Link to="/deferedActions">Defered Actions</Link></li>
+                <li><Link to="/deferredActions">Defered Actions</Link></li>
                 <li><Link to="/music">Music</Link></li>
                 <li><Link to="/security">Security</Link></li>
               </ul>
@@ -34,7 +34,8 @@ class App extends Component {
               <Route exact path="/actions" component={Actions}/>
               <Route exact path="/actions/:id" component={Action}/>
               <Route path="/actions/:rootid/:id" component={Action}/>
-              <Route path="/deferedActions" component={DeferredActions}/>
+              <Route path="/deferred/action/:deferredid" component={Action}/>
+              <Route path="/deferredActions" component={DeferredActions}/>
               <Route path="/music" component={Music}/>
               <Route exact path="/security" component={Security}/>
               <Route exact path="/security/:id" component={UserSecurity}/>

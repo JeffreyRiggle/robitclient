@@ -14,17 +14,17 @@ class BroadcastAction extends Component {
   render() {
     return (
       <div>
-        <div>
-          <label>Message</label>
-          <input type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Message</label>
+          <input className="in" type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
         </div>
-        <div>
-          <label>Help Message</label>
-          <input type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Help Message</label>
+          <input className="in" type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
         </div>
-        <div>
-          <label>Channel Id or Name (optional)</label>
-          <input type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Channel Id or Name (optional)</label>
+          <input className="in" type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
         </div>
       </div>
     );

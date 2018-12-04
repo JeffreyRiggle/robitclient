@@ -27,13 +27,13 @@ class RandomBroadcastAction extends Component {
           <input type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
           <button onClick={this.addMessage.bind(this)}>Add Message</button>
         </div>
-        <div>
-          <label>Help Message</label>
-          <input type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Help Message</label>
+          <input className="in" type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
         </div>
-        <div>
-          <label>Channel Id or Name (optional)</label>
-          <input type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Channel Id or Name (optional)</label>
+          <input className="in" type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
         </div>
       </div>
     );

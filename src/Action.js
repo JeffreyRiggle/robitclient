@@ -75,11 +75,11 @@ class Action extends Component {
         <div>
           <label>Type</label>
           <select value={this.state.selectedType} onChange={this.typeChanged.bind(this)}>
-            <option value="broadcast">Broadcast</option>
-            <option value="randombroadcast">Random Broadcast</option>
-            <option value="embed">Embed</option>
-            <option value="http">Http</option>
-            <option value="multiaction">Multi-Action</option>
+            <option className="opt" value="broadcast">Broadcast</option>
+            <option className="opt" value="randombroadcast">Random Broadcast</option>
+            <option className="opt" value="embed">Embed</option>
+            <option className="opt" value="http">Http</option>
+            <option className="opt" value="multiaction">Multi-Action</option>
           </select>
           {this.renderTypedAction()}
         </div>

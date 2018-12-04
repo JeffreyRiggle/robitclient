@@ -1,15 +1,18 @@
 $sidebar-color: #2f3136;
 $text-color: #fff;
 $content-color: #36393f;
+$default-padding: 8px;
+$small-padding: 4px;
 
 .input-option {
     display: flex;
     flex: 1 1 auto;
-    padding: 8px;
+    padding: $default-padding;
 
     .lbl {
         flex: 0 1 auto;
-        margin-right: 8px;
+        margin-right: $default-padding;
+        padding: $small-padding;
     }
 
     .in {
@@ -19,4 +22,21 @@ $content-color: #36393f;
 
 a {
     color: $text-color
+}
+
+input[type=text] {
+    background-color: rgba(114,118,125,.3);
+    color: hsla(0,0%,100%,.7);
+    border: none;
+    padding: $small-padding;
+}
+
+textarea {
+    resize: none;
+}
+
+select, select.selector {
+    background-color: rgba(114,118,125,.3);
+    color: hsla(0,0%,100%,.7);
+    padding: $small-padding;
 }

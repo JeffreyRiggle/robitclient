@@ -15,21 +15,21 @@ class HttpAction extends Component {
   render() {
     return (
       <div>
-        <div>
-          <label>Method</label>
-          <input type="text" value={this.state.method} onChange={this.updateMethod.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Method</label>
+          <input className="in" type="text" value={this.state.method} onChange={this.updateMethod.bind(this)}/>
         </div>
-        <div>
-          <label>URL</label>
-          <input type="text" value={this.state.url} onChange={this.updateURL.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">URL</label>
+          <input className="in" type="text" value={this.state.url} onChange={this.updateURL.bind(this)}/>
         </div>
-        <div>
-          <label>Body</label>
-          <textarea value={this.state.body} onChange={this.updateBody.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Body</label>
+          <textarea className="in" value={this.state.body} onChange={this.updateBody.bind(this)}/>
         </div>
-        <div>
-          <label>Help Message</label>
-          <input type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
+        <div className="input-option">
+          <label className="lbl">Help Message</label>
+          <input className="in" type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import IntervalPicker from './Pickers/IntervalPicker';
 import DailyPicker from './Pickers/DailyPicker';
+import FuturePicker from './Pickers/FuturePicker';
 import moment from 'moment';
 
 const daily = 'Daily';
@@ -51,7 +52,7 @@ class Deferred extends Component {
         }
 
         if (this.state.selectedType === futureTime) {
-            return <div>Future</div>
+            return <FuturePicker date={this.action.timestamp} onChange={this.updateTimeStamp.bind(this)}/>
         }
 
         return <IntervalPicker interval={this.action.reoccuring} onChange={this.updateInterval.bind(this)}/>
@@ -63,6 +64,10 @@ class Deferred extends Component {
 
     updateInterval(interval) {
         this.action.reoccuring = interval;
+    }
+
+    updateTimeStamp(timestamp) {
+        this.action.timestamp = timestamp;
     }
 
     typeChanged(event) {

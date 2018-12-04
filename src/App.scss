@@ -9,20 +9,31 @@
     header {
         flex: 0 0 auto;
         text-align: center;
+        background-color: $content-color;
+        color: $text-color;
+        border-bottom: 1px solid black;
     }
 
     .content {
         display: flex;
         flex-direction: row;
         flex: 1 1 auto;
+        background-color: $sidebar-color;
     
         .sidebar {
             flex: 0 0 auto;
-            margin-right: 32px;
+
+            ul {
+                padding: 0 16px;
+                list-style-type: none;
+            }
         }
     
         .content-area {
+            padding-left: 32px;
             flex: 1 1 auto;
+            background-color: $content-color;
+            color: $text-color;
         }
     }
 

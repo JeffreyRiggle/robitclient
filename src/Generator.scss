@@ -1,0 +1,17 @@
+@import './Common.scss';
+
+.generator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    padding: $default-padding;
+
+    button, .button {
+        padding: $default-padding $large-padding;
+    }
+
+    .loadfile {
+        display: none;
+    }
+}

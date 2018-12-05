@@ -1,4 +1,4 @@
-import {save} from './fileSaver';
+import {save, load} from './fileManager';
 
 let config = {
     greeting: "Robit online. Boop Boop",
@@ -144,6 +144,14 @@ const saveConfig = () => {
     save(JSON.stringify(config), 'application/json', 'robitconfig.json');
 }
 
+const loadConfig = (file) => {
+    load(file).then(data => {
+        config = JSON.parse(data);
+    }).catch(e => {
+        console.log(e);
+    });
+}
+
 export {
     getToken,
     setToken,
@@ -168,5 +176,6 @@ export {
     getActionById,
     addAction,
     removeAction,
-    saveConfig
+    saveConfig,
+    loadConfig
 }

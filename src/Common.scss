@@ -1,9 +1,20 @@
 $sidebar-color: #2f3136;
 $text-color: #fff;
 $content-color: #36393f;
+$large-padding: 16px;
 $default-padding: 8px;
 $small-padding: 4px;
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
 .input-option {
     display: flex;
     flex: 1 1 auto;
@@ -33,6 +44,18 @@ input[type=text] {
 
 textarea {
     resize: none;
+}
+
+button, .button {
+    border: none;
+    padding: $small-padding $default-padding;
+    background-color: #7289da;
+    color: $text-color;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #677bc4;
+    }
 }
 
 select, select.selector {

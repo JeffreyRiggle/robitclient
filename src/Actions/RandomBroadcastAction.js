@@ -15,8 +15,8 @@ class RandomBroadcastAction extends Component {
   render() {
     return (
       <div>
-        <div>
-          <label>Messages</label>
+        <div className="input-option">
+          <label className="lbl">Messages</label>
           {this.state.messages.map(message => {
               return (
                 <div>

@@ -1,0 +1,10 @@
+@import './Common.scss';
+
+.action-selection {
+    padding: $default-padding;
+
+    .action-selection-label {
+        margin-right: $default-padding;
+        padding: $small-padding;
+    }
+}

@@ -14,6 +14,8 @@ import {
     sanitizeMulti 
 } from './Actions/actionSanitizer';
 
+import './Action.scss';
+
 class Action extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ class Action extends Component {
 
     this.state = {
       selectedType: (action && action.type) || 'Broadcast',
-      id: action && action.id,
+      id: (props.match && props.match.params && props.match.params.id) || 'unknown',
       message: action && action.message,
       channelId: action && action.channel
     };
@@ -63,7 +65,7 @@ class Action extends Component {
     if (!this.action) {
         return (
             <div>
-                <h3>Something went wrong action {this.state.id || 'unknown'} was not found :(</h3>
+                <h3>Something went wrong action {this.state.id} was not found :(</h3>
             </div>
         )
     }
@@ -71,18 +73,18 @@ class Action extends Component {
     return (
       <div>
         <h4><Link to={this.backLocation}>Back</Link></h4>
-        <h3>Action {this.state.action && this.state.action.id}</h3>
-        <div>
-          <label>Type</label>
+        <h3>Action {this.state.id}</h3>
+        <div className="action-selection">
+          <label className="action-selection-label">Type</label>
           <select value={this.state.selectedType} onChange={this.typeChanged.bind(this)}>
-            <option className="opt" value="broadcast">Broadcast</option>
-            <option className="opt" value="randombroadcast">Random Broadcast</option>
-            <option className="opt" value="embed">Embed</option>
-            <option className="opt" value="http">Http</option>
-            <option className="opt" value="multiaction">Multi-Action</option>
+            <option value="broadcast">Broadcast</option>
+            <option value="randombroadcast">Random Broadcast</option>
+            <option value="embed">Embed</option>
+            <option value="http">Http</option>
+            <option value="multiaction">Multi-Action</option>
           </select>
-          {this.renderTypedAction()}
         </div>
+        {this.renderTypedAction()}
       </div>
     );
   }

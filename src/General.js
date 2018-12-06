@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import {getGreeting, setGreeting, getToken, setToken} from './configManager';
+import Help from './Help/Help';
+import getHelp from './Help/helpProvider';
+
+const tokenHelp = getHelp('token');
+const greetingHelp = getHelp('greeting');
 
 class General extends Component {
   constructor(props) {
@@ -18,10 +23,12 @@ class General extends Component {
         <div className="input-option">
           <label className="lbl">Token</label>
           <input type="text" value={this.state.token} onChange={this.tokenChanged.bind(this)} className="in"/>
+          <Help message={tokenHelp}/>
         </div>
         <div className="input-option">
           <label className="lbl">Greeting</label>
           <input type="text" value={this.state.greeting} onChange={this.greetingChanged.bind(this)} className="in"/>
+          <Help message={greetingHelp}/>
         </div>
       </div>
     );

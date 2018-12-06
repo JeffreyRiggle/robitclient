@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import Help from '../Help/Help';
+import getHelp from '../Help/helpProvider';
+
+const messageHelp = getHelp('broadcastMessage');
+const helpMessageHelp = getHelp('helpMessage');
+const channelInfoHelp = getHelp('channelInfo');
 
 class BroadcastAction extends Component {
   constructor(props) {
@@ -17,14 +23,17 @@ class BroadcastAction extends Component {
         <div className="input-option">
           <label className="lbl">Message</label>
           <input className="in" type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
+          <Help message={messageHelp} />
         </div>
         <div className="input-option">
           <label className="lbl">Help Message</label>
           <input className="in" type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
+          <Help message={helpMessageHelp} />
         </div>
         <div className="input-option">
           <label className="lbl">Channel Id or Name (optional)</label>
           <input className="in" type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
+          <Help message={channelInfoHelp} />
         </div>
       </div>
     );

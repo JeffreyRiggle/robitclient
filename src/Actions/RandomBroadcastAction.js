@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import './RandomBroadcastAction.scss';
+import Help from '../Help/Help';
+import getHelp from '../Help/helpProvider';
+
+const messageHelp = getHelp('randomMessage');
+const helpMessageHelp = getHelp('helpMessage');
+const channelInfoHelp = getHelp('channelInfo');
 
 class RandomBroadcastAction extends Component {
   constructor(props) {
@@ -19,6 +25,7 @@ class RandomBroadcastAction extends Component {
         <div className="message-area">
           <div className="message-add">
             <label className="lbl">Messages</label>
+            <Help message={messageHelp} />
             <input className="message-text" type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
             <button className="message-action" onClick={this.addMessage.bind(this)} disabled={!this.state.message}>Add Message</button>
           </div>
@@ -35,10 +42,12 @@ class RandomBroadcastAction extends Component {
         <div className="input-option">
           <label className="lbl">Help Message</label>
           <input className="in" type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
+          <Help message={helpMessageHelp} />
         </div>
         <div className="input-option">
           <label className="lbl">Channel Id or Name (optional)</label>
           <input className="in" type="text" value={this.state.channelId} onChange={this.updateChannel.bind(this)}/>
+          <Help message={channelInfoHelp} />
         </div>
       </div>
     );

@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import Help from '../Help/Help';
+import getHelp from '../Help/helpProvider';
+
+const titleHelp = getHelp('contentTitle');
+const linkHelp = getHelp('linkHelp');
+const helpMessageHelp = getHelp('helpMessage');
 
 class EmbedAction extends Component {
   constructor(props) {
@@ -16,15 +22,18 @@ class EmbedAction extends Component {
       <div>
         <div className="input-option">
           <label className="lbl">Content Title</label>
-          <input type="text" value={this.state.title} onChange={this.updateTitle.bind(this)}/>
+          <input className="in" type="text" value={this.state.title} onChange={this.updateTitle.bind(this)}/>
+          <Help message={titleHelp} />
         </div>
         <div className="input-option">
           <label className="lbl">Content Link</label>
           <input className="in" type="text" value={this.state.image} onChange={this.updateImage.bind(this)}/>
+          <Help message={linkHelp} />
         </div>
         <div className="input-option">
           <label className="lbl">Help Message</label>
           <input className="in" type="text" value={this.state.help} onChange={this.updateHelp.bind(this)}/>
+          <Help message={helpMessageHelp} />
         </div>
       </div>
     );

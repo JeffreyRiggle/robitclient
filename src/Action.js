@@ -26,7 +26,7 @@ class Action extends Component {
     this.action = action;
 
     this.state = {
-      selectedType: (action && action.type) || 'Broadcast',
+      selectedType: (action && action.type) || 'broadcast',
       id: (props.match && props.match.params && props.match.params.id) || 'unknown',
       message: action && action.message,
       channelId: action && action.channel
@@ -90,7 +90,7 @@ class Action extends Component {
   }
 
   renderTypedAction() {
-      if (this.state.selectedType === 'Broadcast') {
+      if (this.state.selectedType === 'broadcast') {
           sanitizeBroadcast(this.action);
           return <BroadcastAction action={this.action} />
       }

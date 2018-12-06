@@ -19,7 +19,7 @@ class Actions extends Component {
         <div>
             <label>New Action</label>
             <input type="text" value={this.state.newActionId} onChange={this.actionIdChanged.bind(this)}/>
-            <button onClick={this.addAction.bind(this)}>Add Action</button>
+            <button onClick={this.addAction.bind(this)} disabled={!this.state.newActionId}>Add Action</button>
         </div>
         {this.state.actions.map(action => {
           return (

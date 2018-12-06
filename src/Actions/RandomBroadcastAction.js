@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './RandomBroadcastAction.scss';
 
 class RandomBroadcastAction extends Component {
   constructor(props) {
@@ -15,17 +16,21 @@ class RandomBroadcastAction extends Component {
   render() {
     return (
       <div>
-        <div className="input-option">
-          <label className="lbl">Messages</label>
-          {this.state.messages.map(message => {
-              return (
-                <div>
-                  <span>{message}</span><button onClick={this.removeMessage(message)}>Remove</button>
-                </div>
-              );
-          })}
-          <input type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
-          <button onClick={this.addMessage.bind(this)}>Add Message</button>
+        <div className="message-area">
+          <div className="message-add">
+            <label className="lbl">Messages</label>
+            <input className="message-text" type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
+            <button className="message-action" onClick={this.addMessage.bind(this)} disabled={!this.state.message}>Add Message</button>
+          </div>
+          <div className="message-list">
+            {this.state.messages.map(message => {
+                return (
+                  <div className="message" key={message}>
+                    <span className="txt">{message}</span><button onClick={this.removeMessage(message)}>Remove</button>
+                  </div>
+                );
+            })}
+          </div>
         </div>
         <div className="input-option">
           <label className="lbl">Help Message</label>

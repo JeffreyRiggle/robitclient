@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route } from 'react-router-dom';
 import General from './General';
 import Actions from './Actions';
 import Action from './Action';
@@ -21,12 +21,12 @@ class App extends Component {
           </header>
           <div className="content">
             <div className="sidebar">
-              <ul>
-                <li><Link to="/">General</Link></li>
-                <li><Link to="/actions">Actions</Link></li>
-                <li><Link to="/deferredActions">Defered Actions</Link></li>
-                <li><Link to="/music">Music</Link></li>
-                <li><Link to="/security">Security</Link></li>
+              <ul className="sidebar-list">
+                <li><NavLink exact to="/" className="sidebar-item">General</NavLink></li>
+                <li><NavLink to="/actions" className="sidebar-item">Actions</NavLink></li>
+                <li><NavLink to="/deferredActions" className="sidebar-item">Defered Actions</NavLink></li>
+                <li><NavLink to="/music" className="sidebar-item">Music</NavLink></li>
+                <li><NavLink to="/security" className="sidebar-item">Security</NavLink></li>
               </ul>
             </div>
             <div className="content-area">

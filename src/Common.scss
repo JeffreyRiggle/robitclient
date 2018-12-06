@@ -5,6 +5,7 @@ $large-padding: 16px;
 $default-padding: 8px;
 $small-padding: 4px;
 $input-color: #484C52;
+$action-color: #7289da;
 
 body {
     margin: 0;
@@ -50,7 +51,7 @@ textarea {
 button, .button {
     border: none;
     padding: $small-padding $default-padding;
-    background-color: #7289da;
+    background-color: $action-color;
     color: $text-color;
     cursor: pointer;
 

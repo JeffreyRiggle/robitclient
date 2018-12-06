@@ -30,9 +30,20 @@
         .sidebar {
             flex: 0 0 auto;
 
-            ul {
+            .sidebar-list {
                 padding: 0 16px;
                 list-style-type: none;
+
+                .sidebar-item {
+                    display: block;
+                    text-decoration: none;
+                    padding: $default-padding;
+                    border-radius: 3px;
+
+                    &.active {
+                        background-color: $action-color;
+                    }
+                }
             }
         }
     

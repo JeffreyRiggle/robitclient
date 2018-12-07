@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {getDeferredActions, addDeferredAction, removeDeferredAction} from './configManager';
 import DeferredAction from './DeferredAction';
+import './DeferredActions.scss';
 
 class DeferredActions extends Component {
   constructor(props) {
@@ -19,11 +20,10 @@ class DeferredActions extends Component {
   render() {
     return (
       <div>
-        <h3>Deferred Actions</h3>
+        <h3>Deferred Actions <button className="add-deferred" onClick={this.addDeferred.bind(this)}>Add Deferred</button></h3>
         {this.state.actions.map(action => {
           return <div key={action.id}><DeferredAction action={action}/><button onClick={this.removeDeferred(action)}>Remove</button></div>
         })}
-        <button onClick={this.addDeferred.bind(this)}>Add Deferred</button>
       </div>
     );
   }

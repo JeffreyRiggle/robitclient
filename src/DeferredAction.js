@@ -4,6 +4,7 @@ import IntervalPicker from './Pickers/IntervalPicker';
 import DailyPicker from './Pickers/DailyPicker';
 import FuturePicker from './Pickers/FuturePicker';
 import moment from 'moment';
+import './DeferredAction.scss';
 
 const daily = 'Daily';
 const futureTime = 'FutureTime';
@@ -36,14 +37,19 @@ class Deferred extends Component {
     render() {
         return (
             <div>
-                <h3>Deferred Action</h3>
-                <select value={this.state.selectedType} onChange={this.typeChanged.bind(this)}>
-                    <option value={futureTime}>Future Time</option>
-                    <option value={daily}>Daily</option>
-                    <option value={reoccuring}>Re-Occuring</option>
-                </select>
-                {this.renderTimePicker()}
-                <Link to={`/deferred/action/${this.action.id}`}>Action</Link>
+                <h4>Deferred Action</h4>
+                <div className="deferred-action">
+                    <div className="deferred-selector">
+                        <label className="lbl">Deferred Type</label>
+                        <select value={this.state.selectedType} onChange={this.typeChanged.bind(this)}>
+                            <option value={futureTime}>Future Time</option>
+                            <option value={daily}>Daily</option>
+                            <option value={reoccuring}>Re-Occuring</option>
+                        </select>
+                    </div>
+                    {this.renderTimePicker()}
+                    <Link to={`/deferred/action/${this.action.id}`}>Action</Link>
+                </div>
             </div>
         );
     }

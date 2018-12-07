@@ -21,18 +21,6 @@ class Help extends Component {
             </div>
         )
     }
-
-    handleHover() {
-        this.setState({
-            hover: true
-        });
-    }
-
-    handleOut() {
-        this.setState({
-            hover: false
-        });
-    }
 }
 
 export default Help;

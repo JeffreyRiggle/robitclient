@@ -1,0 +1,17 @@
+@import './Common.scss';
+
+.deferred-action {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $large-padding;
+
+    .deferred-selector {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: $default-padding;
+
+        .lbl {
+            margin-right: $default-padding;
+        }
+    }
+}

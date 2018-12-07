@@ -1,0 +1,22 @@
+.future-picker {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+
+    .react-datepicker-wrapper {
+        flex: 1 1 auto;
+
+        .react-datepicker__input-container {
+            display: flex;
+        }
+
+        input {
+            flex: 1 1 auto;
+            line-height: 1.6;
+        }
+    }
+
+    .help {
+        flex: 0 1 auto;
+    }
+}

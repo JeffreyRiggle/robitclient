@@ -9,7 +9,8 @@ let help = new Map([
     ['apiMethod', 'The REST method to use (GET, PUT, POST, Etc)'],
     ['apiURL', 'The REST endpoint to connect to'],
     ['apiBody', 'The JSON body to send to the REST endpoint'],
-    ['randomMessage', 'The list of messages to choose from. One will randomly be selected when the action is triggered.']
+    ['randomMessage', 'The list of messages to choose from. One will randomly be selected when the action is triggered.'],
+    ['futureHelp', 'The specific date and time for the action to occur. This is a one time action.']
 ]);
 
 export default (id) => {

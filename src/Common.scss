@@ -69,6 +69,10 @@ select {
     background-color: $input-color;
     color: hsla(0,0%,100%,.7);
     padding: $small-padding;
+
+    &[disabled], &.disabled {
+        opacity: .5;
+    }
 }
 
 .item-list {

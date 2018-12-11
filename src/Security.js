@@ -8,19 +8,55 @@ import {
   removeDefaultUserPermission,
   getAccessForUsers,
   addAccessUser,
-  removeAccessUser } from './configManager';
+  removeAccessUser, 
+  getActions} from './configManager';
+import Help from './Help/Help';
+import getHelp from './Help/helpProvider';
+
+const deniedHelp = getHelp('deniedMessage');
+const knownActions = [
+  { displayName: 'All', value: '*' },
+  { displayName: 'Help', value: 'help' },
+  { displayName: 'Play Music', value: 'playmusic' },
+  { displayName: 'Stop Music', value: 'stopmusic' },
+  { displayName: 'Current Song', value: 'currentsong' },
+  { displayName: 'Next Song', value: 'nextsong' },
+  { displayName: 'Shuffle Music', value: 'shufflemusic' },
+  { displayName: 'Shutdown', value: 'shutdown' },
+  { displayName: 'Grant Access', value: 'grantaccess' },
+  { displayName: 'Revoke Access', value: 'revokeaccess' },
+  { displayName: 'User Access', value: 'useraccess' }
+];
 
 class Security extends Component {
   constructor(props) {
     super(props);
 
+    let actions = this.getActionNames();
+    const userPermissions = getDefaultUserPermissions();
+
     this.state = {
       accessMessage: getAccessDeniedMessage(),
-      defaultRights: getDefaultUserPermissions(),
-      pendingRight: '',
+      defaultRights: userPermissions,
+      pendingRight: actions[0].value,
       users: getAccessForUsers(),
-      pendingUser: ''
+      pendingUser: '',
+      actions: actions,
+      rightsDisabled: userPermissions.indexOf('*') !== -1
     };
+  }
+
+  getActionNames() {
+    let actions = knownActions;
+
+    getActions().forEach(action => {
+      actions.push({
+        displayName: action.id,
+        value: action.id
+      });
+    });
+
+    return actions;
   }
 
   render() {
@@ -30,28 +66,41 @@ class Security extends Component {
         <div className="input-option">
           <label className="lbl">Access Denied Message</label>
           <input type="text" className="in" value={this.state.accessMessage} onChange={this.accessChanged.bind(this)}/>
+          <Help message={deniedHelp} />
         </div>
         <div>
           <p>Default Rights</p>
-          {this.state.defaultRights.map(right => {
-            return <div><span>{right}</span><button onClick={this.removeRight(right).bind(this)}>Remove</button></div>
-          })}
-          <input type="text" value={this.state.pendingRight} onChange={this.updatePendingRight.bind(this)} />
-          <button onClick={this.addPendingRight.bind(this)}>Add Default</button>
+          <div className="input-option">
+            <select className="in" onChange={this.updatePendingRight.bind(this)} disabled={this.state.rightsDisabled}>
+              {this.state.actions.map(action => {
+                return <option value={action.value} key={action.value}>{action.displayName}</option>
+              })}
+            </select>
+            <button onClick={this.addPendingRight.bind(this)}>Add Default</button>
+          </div>
+          <div className="item-list">
+            {this.state.defaultRights.map(right => {
+              return <div className="item"><span className="txt">{right}</span><button onClick={this.removeRight(right).bind(this)}>Remove</button></div>
+            })}
+          </div>
         </div>
         <div>
           <p>Users</p>
-          {this.state.users.map(user => {
-            return (
-              <div key={user.name}>
-                <span>{user.name}</span>
-                <button onClick={this.removeUser(user)}>Remove</button>
-                <Link to={`/security/${user.name}`}>Edit</Link>
-              </div>
-            );
-          })}
-          <input type="text" value={this.state.pendingUser} onChange={this.updatePendingUser.bind(this)} />
-          <button onClick={this.addPendingUser.bind(this)}>Add User</button>
+          <div className="input-option">
+            <input className="in" type="text" value={this.state.pendingUser} onChange={this.updatePendingUser.bind(this)} />
+            <button onClick={this.addPendingUser.bind(this)}>Add User</button>
+          </div>
+          <div className="item-list">
+            {this.state.users.map(user => {
+              return (
+                <div key={user.name} className="item">
+                  <span className="txt">{user.name}</span>
+                  <button onClick={this.removeUser(user)}>Remove</button>
+                  <Link to={`/security/${user.name}`}>Edit</Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -81,9 +130,12 @@ class Security extends Component {
   addPendingRight() {
     addDefaultUserPermission(this.state.pendingRight);
 
+    const userPermissions = getDefaultUserPermissions();
+
     this.setState({
       pendingRight: '',
-      defaultRights: getDefaultUserPermissions()
+      defaultRights: userPermissions,
+      rightsDisabled: userPermissions.indexOf('*') !== -1
     });
   }
 
@@ -103,8 +155,11 @@ class Security extends Component {
     return () => {
       removeDefaultUserPermission(right);
 
+      const userPermissions = getDefaultUserPermissions();
+
       this.setState({
-        defaultRights: getDefaultUserPermissions()
+        defaultRights: userPermissions,
+        rightsDisabled: userPermissions.indexOf('*') !== -1
       });
     }
   }

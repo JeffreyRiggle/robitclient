@@ -53,6 +53,16 @@ button, .button {
     padding: $small-padding $default-padding;
     background-color: $action-color;
     color: $text-color;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0;
+    text-shadow: none;
+    display: inline-block;
+    margin: 0em;
+    font: 400 14px Arial;
+
     cursor: pointer;
 
     &:hover {
@@ -87,4 +97,8 @@ select {
             margin-right: $default-padding;
         }
     }
+}
+
+a.button {
+    text-decoration: none;
 }

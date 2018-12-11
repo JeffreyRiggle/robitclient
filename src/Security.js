@@ -96,7 +96,7 @@ class Security extends Component {
                 <div key={user.name} className="item">
                   <span className="txt">{user.name}</span>
                   <button onClick={this.removeUser(user)}>Remove</button>
-                  <Link to={`/security/${user.name}`}>Edit</Link>
+                  <Link className="button" to={`/security/${user.name}`}>Edit</Link>
                 </div>
               );
             })}

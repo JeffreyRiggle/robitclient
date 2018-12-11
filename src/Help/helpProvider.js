@@ -10,7 +10,8 @@ let help = new Map([
     ['apiURL', 'The REST endpoint to connect to'],
     ['apiBody', 'The JSON body to send to the REST endpoint'],
     ['randomMessage', 'The list of messages to choose from. One will randomly be selected when the action is triggered.'],
-    ['futureHelp', 'The specific date and time for the action to occur. This is a one time action.']
+    ['futureHelp', 'The specific date and time for the action to occur. This is a one time action.'],
+    ['dailyHelp', 'The time of day, in your current time zone, that you would like the action to occur.']
 ]);
 
 export default (id) => {

@@ -47,7 +47,9 @@ class Deferred extends Component {
                             <option value={reoccuring}>Re-Occuring</option>
                         </select>
                     </div>
-                    {this.renderTimePicker()}
+                    <div className="picker">
+                        {this.renderTimePicker()}
+                    </div>
                     <Link to={`/deferred/action/${this.action.id}`}>Action</Link>
                 </div>
             </div>

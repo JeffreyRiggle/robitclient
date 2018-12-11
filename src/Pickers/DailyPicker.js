@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import Help from '../Help/Help';
+import getHelp from '../Help/helpProvider';
+import './TimePicker.scss';
 
 import 'react-datepicker/dist/react-datepicker.css';
+
+const dailyHelp = getHelp('dailyHelp');
 
 class DailyPicker extends Component {
     constructor(props) {
@@ -23,13 +28,16 @@ class DailyPicker extends Component {
 
     render() {
         return (
-            <DatePicker 
-                selected={this.state.date} 
-                onChange={this.dateChanged.bind(this)} 
-                showTimeSelect
-                showTimeSelectOnly
-                timeIntervals={5}
-                dateFormat="h:mm:ss aa"/>
+            <div className="time-picker">
+                <DatePicker 
+                    selected={this.state.date} 
+                    onChange={this.dateChanged.bind(this)} 
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={5}
+                    dateFormat="h:mm:ss aa"/>
+                <Help message={dailyHelp} />
+            </div>
         );
     }
 

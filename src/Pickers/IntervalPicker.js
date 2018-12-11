@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './IntervalPicker.scss';
 
 const dayInterval = 1 * 24 * 60 * 60 * 1000;
 const hourInterval = 1 * 60 * 60 * 1000;
@@ -49,20 +50,20 @@ class IntervalPicker extends Component {
 
     render() {
         return (
-            <div>
-                <div>
+            <div className="interval-picker">
+                <div className="interval-section">
                     <label>Days</label>
                     <input type="text" value={this.state.days} onChange={this.dayChanged.bind(this)}/>
                 </div>
-                <div>
+                <div className="interval-section">
                     <label>Hours</label>
                     <input type="text" value={this.state.hours} onChange={this.hoursChanged.bind(this)}/>
                 </div>
-                <div>
+                <div className="interval-section">
                     <label>Minutes</label>
                     <input type="text" value={this.state.minutes} onChange={this.minutesChanged.bind(this)}/>
                 </div>
-                <div>
+                <div className="interval-section">
                     <label>Seconds</label>
                     <input type="text" value={this.state.seconds} onChange={this.secondsChanged.bind(this)}/>
                 </div>

@@ -1,0 +1,15 @@
+@import '../Common.scss';
+
+.interval-picker {
+    display: flex;
+    flex-direction: row;
+
+    .interval-section {
+        display: flex;
+        flex-direction: column;
+
+        &+.interval-section {
+            margin-left: $default-padding;
+        }
+    }
+}

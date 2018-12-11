@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import Help from '../Help/Help';
 import getHelp from '../Help/helpProvider';
-import './FuturePicker.scss';
+import './TimePicker.scss';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -28,7 +28,7 @@ class FuturePicker extends Component {
 
     render() {
         return (
-            <div className="future-picker">
+            <div className="time-picker">
                 <DatePicker 
                     selected={this.state.date} 
                     onChange={this.dateChanged.bind(this)} 

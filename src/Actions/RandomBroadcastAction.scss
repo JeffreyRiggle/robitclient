@@ -20,18 +20,4 @@
             flex: 0 1 auto;
         }
     }
-
-    .message-list {
-        padding: $default-padding;
-        display: flex;
-        flex-direction: column;
-    
-        .message {
-            flex: 1 1 auto;
-
-            .txt {
-                margin-right: $default-padding;
-            }
-        }
-    }
 }

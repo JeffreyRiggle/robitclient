@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import {getAudioSources, addAudioSource, removeAudioSource} from './configManager';
+import Help from './Help/Help';
+import getHelp from './Help/helpProvider';
+import './Music.scss';
+
+const folderHelp = getHelp('folderHelp');
 
 class Music extends Component {
   constructor(props) {
@@ -13,19 +18,22 @@ class Music extends Component {
 
   render() {
     return (
-      <div>
+      <div className="music-options">
         <h3>Music Options</h3>
-        <div>
+        <div className="input-option">
+          <input className="in" type="text" value={this.state.pendingFolder} onChange={this.updatePendingFolder.bind(this)} />
+          <button onClick={this.addFolder.bind(this)}>Add Folder</button>
+          <Help message={folderHelp}/>
+        </div>
+        <div className="item-list">
           {this.state.folders.map(folder => {
             return (
-              <div>
-                <span>{folder}</span>
+              <div className="item">
+                <span className="txt">{folder}</span>
                 <button onClick={this.removeFolder(folder)}>Remove</button>
               </div>
             )
           })}
-          <input type="text" value={this.state.pendingFolder} onChange={this.updatePendingFolder.bind(this)} />
-          <button onClick={this.addFolder.bind(this)}>Add Folder</button>
         </div>
       </div>
     );

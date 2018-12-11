@@ -29,10 +29,10 @@ class RandomBroadcastAction extends Component {
             <input className="message-text" type="text" value={this.state.message} onChange={this.updateMessage.bind(this)}/>
             <button className="message-action" onClick={this.addMessage.bind(this)} disabled={!this.state.message}>Add Message</button>
           </div>
-          <div className="message-list">
+          <div className="item-list">
             {this.state.messages.map(message => {
                 return (
-                  <div className="message" key={message}>
+                  <div className="item" key={message}>
                     <span className="txt">{message}</span><button onClick={this.removeMessage(message)}>Remove</button>
                   </div>
                 );

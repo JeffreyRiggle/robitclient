@@ -70,3 +70,17 @@ select {
     color: hsla(0,0%,100%,.7);
     padding: $small-padding;
 }
+
+.item-list {
+    padding: $default-padding;
+    display: flex;
+    flex-direction: column;
+
+    .item {
+        flex: 1 1 auto;
+
+        .txt {
+            margin-right: $default-padding;
+        }
+    }
+}

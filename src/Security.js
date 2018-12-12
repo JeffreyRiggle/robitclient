@@ -9,24 +9,13 @@ import {
   getAccessForUsers,
   addAccessUser,
   removeAccessUser, 
-  getActions} from './configManager';
+  getActions,
+  knownActions } from './configManager';
 import Help from './Help/Help';
 import getHelp from './Help/helpProvider';
+import './Security.scss';
 
 const deniedHelp = getHelp('deniedMessage');
-const knownActions = [
-  { displayName: 'All', value: '*' },
-  { displayName: 'Help', value: 'help' },
-  { displayName: 'Play Music', value: 'playmusic' },
-  { displayName: 'Stop Music', value: 'stopmusic' },
-  { displayName: 'Current Song', value: 'currentsong' },
-  { displayName: 'Next Song', value: 'nextsong' },
-  { displayName: 'Shuffle Music', value: 'shufflemusic' },
-  { displayName: 'Shutdown', value: 'shutdown' },
-  { displayName: 'Grant Access', value: 'grantaccess' },
-  { displayName: 'Revoke Access', value: 'revokeaccess' },
-  { displayName: 'User Access', value: 'useraccess' }
-];
 
 class Security extends Component {
   constructor(props) {
@@ -95,8 +84,8 @@ class Security extends Component {
               return (
                 <div key={user.name} className="item">
                   <span className="txt">{user.name}</span>
+                  <Link className="button edit" to={`/security/${user.name}`}>Edit</Link>
                   <button onClick={this.removeUser(user)}>Remove</button>
-                  <Link className="button" to={`/security/${user.name}`}>Edit</Link>
                 </div>
               );
             })}

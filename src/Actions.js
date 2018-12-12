@@ -21,15 +21,17 @@ class Actions extends Component {
             <input type="text" value={this.state.newActionId} onChange={this.actionIdChanged.bind(this)}/>
             <button onClick={this.addAction.bind(this)} disabled={!this.state.newActionId}>Add Action</button>
         </div>
-        {this.state.actions.map(action => {
-          return (
-            <div key={action.id}>
-              <span>{action.id}</span>
-              <button onClick={this.removeAction(action)}>Remove</button>
-              <Link to={`/actions/${action.id}`}>Edit</Link>
-            </div>
-          );
-        })}
+        <div className="item-list">
+          {this.state.actions.map(action => {
+            return (
+              <div key={action.id} className="item">
+                <span className="txt">{action.id}</span>
+                <Link className="button edit" to={`/actions/${action.id}`}>Edit</Link>
+                <button onClick={this.removeAction(action)}>Remove</button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

@@ -12,6 +12,20 @@ let config = {
     actions: []
 };
 
+const knownActions = [
+  { displayName: 'All', value: '*' },
+  { displayName: 'Help', value: 'help' },
+  { displayName: 'Play Music', value: 'playmusic' },
+  { displayName: 'Stop Music', value: 'stopmusic' },
+  { displayName: 'Current Song', value: 'currentsong' },
+  { displayName: 'Next Song', value: 'nextsong' },
+  { displayName: 'Shuffle Music', value: 'shufflemusic' },
+  { displayName: 'Shutdown', value: 'shutdown' },
+  { displayName: 'Grant Access', value: 'grantaccess' },
+  { displayName: 'Revoke Access', value: 'revokeaccess' },
+  { displayName: 'User Access', value: 'useraccess' }
+];
+
 const getToken = () => {
     return config.token;
 }
@@ -177,5 +191,6 @@ export {
     addAction,
     removeAction,
     saveConfig,
-    loadConfig
+    loadConfig,
+    knownActions
 }

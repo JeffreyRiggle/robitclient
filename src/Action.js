@@ -72,7 +72,7 @@ class Action extends Component {
 
     return (
       <div>
-        <h4><Link to={this.backLocation}>Back</Link></h4>
+        <h4><Link className="button" to={this.backLocation}>Back</Link></h4>
         <h3>Action {this.state.id}</h3>
         <div className="action-selection">
           <label className="action-selection-label">Type</label>

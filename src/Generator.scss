@@ -11,6 +11,10 @@
         padding: $default-padding $large-padding;
     }
 
+    .load-txt {
+        cursor: pointer;
+    }
+    
     .loadfile {
         display: none;
     }

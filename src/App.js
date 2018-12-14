@@ -8,10 +8,27 @@ import Music from './Music';
 import Security from './Security';
 import UserSecurity from './UserSecurity';
 import Generator from './Generator';
+import nativeService from './Native/NativeService';
 
 import './App.scss';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    nativeService.on(nativeService.stateChanged, this.stateChanged.bind(this));
+
+    this.state = {
+      electron: nativeService.available
+    }
+  }
+
+  stateChanged(state) {
+    this.setState({
+      electron: state
+    });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -27,6 +44,7 @@ class App extends Component {
                 <li><NavLink to="/deferredActions" className="sidebar-item">Defered Actions</NavLink></li>
                 <li><NavLink to="/music" className="sidebar-item">Music</NavLink></li>
                 <li><NavLink to="/security" className="sidebar-item">Security</NavLink></li>
+                {this.state.electron && <li><NavLink to="/server" className="sidebar-item">Server</NavLink></li>}
               </ul>
             </div>
             <div className="content-area">

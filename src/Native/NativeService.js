@@ -34,6 +34,24 @@ class NativeService extends EventEmitter {
     get stateChanged() {
         return 'stateChanged';
     }
+
+    sendMessage(event, message) {
+        if (this.available) {
+            ipcRenderer.send(event, message);
+        }
+    }
+
+    subscribeEvent(event, callback) {
+        if (this.available) {
+            ipcRenderer.on(event, callback);
+        }
+    }
+
+    unsubcribeEvent(event, callback) {
+        if (this.available) {
+            ipcRenderer.removeListener(event, callback);
+        }
+    }
 }
 
 export default new NativeService();

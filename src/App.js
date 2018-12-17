@@ -9,6 +9,7 @@ import Security from './Security';
 import UserSecurity from './UserSecurity';
 import Generator from './Generator';
 import nativeService from './Native/NativeService';
+import Server from './Server';
 
 import './App.scss';
 
@@ -57,6 +58,7 @@ class App extends Component {
               <Route path="/music" component={Music}/>
               <Route exact path="/security" component={Security}/>
               <Route exact path="/security/:id" component={UserSecurity}/>
+              {this.state.electron && <Route exact path="/server" component={Server}/>}
             </div>
           </div>
           <footer>

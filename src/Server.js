@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import nativeService from './Native/NativeService'
+import nativeService from './Native/NativeService';
+import {getConfig} from './configManager';
 
 class Server extends Component {
     constructor(props) {
@@ -20,6 +21,15 @@ class Server extends Component {
     }
 
     _serverStateChanged(event, state) {
+        if (state === 'stopped') {
+            this.setState({
+                starting: false,
+                started: false,
+                errored: false
+            });
+            return;
+        }
+
         if (state === 'started') {
             this.setState({
                 starting: false,
@@ -50,13 +60,17 @@ class Server extends Component {
             <div>
                 <h3>Server</h3>
                 <button disabled={this.state.started || this.state.starting} onClick={this.startServer}>Start</button>
-                <button disabled={!this.state.started}>Stop</button>
+                <button disabled={!this.state.started} onClick={this.stopServer}>Stop</button>
             </div>
         )
     }
 
     startServer() {
-        nativeService.sendMessage('startserver');
+        nativeService.sendMessage('startserver', getConfig());
+    }
+
+    stopServer() {
+        nativeService.sendMessage('stopserver');
     }
 }
 

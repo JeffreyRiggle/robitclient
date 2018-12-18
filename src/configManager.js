@@ -166,6 +166,10 @@ const loadConfig = (file) => {
     });
 }
 
+const getConfig = () => {
+    return config;
+}
+
 export {
     getToken,
     setToken,
@@ -192,5 +196,6 @@ export {
     removeAction,
     saveConfig,
     loadConfig,
-    knownActions
+    knownActions,
+    getConfig
 }

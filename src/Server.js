@@ -20,7 +20,7 @@ class Server extends Component {
         nativeService.unsubcribeEvent('serverstate', this.boundServerState);
     }
 
-    _serverStateChanged(event, state) {
+    _serverStateChanged(state) {
         if (state === 'stopped') {
             this.setState({
                 starting: false,

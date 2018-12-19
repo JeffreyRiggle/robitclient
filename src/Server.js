@@ -9,11 +9,17 @@ class Server extends Component {
         this.state = {
             starting: false,
             started: false,
-            errored: false
+            errored: false,
+            memoryUsage: 'N/A',
+            cpuTime: 'N/A',
+            upTime: 'N/A'
         }
 
         this.boundServerState = this._serverStateChanged.bind(this);
+        this.boundHealthState = this._healthChanged.bind(this);
+
         nativeService.subscribeEvent('serverstate', this.boundServerState);
+        nativeService.subscribeEvent('serverhealth', this.boundHealthState);
     }
 
     componentWillUnmount() {
@@ -55,12 +61,28 @@ class Server extends Component {
         });
     }
 
+    _healthChanged(state) {
+        this.setState({
+            memoryUsage: state.memory,
+            cpuTime: state.cpu,
+            upTime: state.upTime
+        });
+    }
+
     render() {
         return (
             <div>
                 <h3>Server</h3>
                 <button disabled={this.state.started || this.state.starting} onClick={this.startServer}>Start</button>
                 <button disabled={!this.state.started} onClick={this.stopServer}>Stop</button>
+                <div>
+                    <h3>Health</h3>
+                    <div>
+                        <p>Up Time: {this.state.upTime}</p>
+                        <p>Memory: {this.state.memoryUsage}</p>
+                        <p>CPU Time: {this.state.cpuTime}</p>
+                    </div>
+                </div>
             </div>
         )
     }

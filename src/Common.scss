@@ -61,7 +61,6 @@ button, .button {
     text-shadow: none;
     display: inline-block;
     margin: 0em;
-    font: 400 14px Arial;
 
     cursor: pointer;
 
@@ -91,7 +90,9 @@ select {
     flex-direction: column;
 
     .item {
+        display: flex;
         flex: 1 1 auto;
+        margin-bottom: $small-padding;
 
         .txt {
             margin-right: $default-padding;

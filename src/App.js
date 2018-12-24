@@ -32,7 +32,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/robit">
         <div className="App">
           <header>
             <h3>Robit Client</h3>

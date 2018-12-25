@@ -15,6 +15,24 @@
 
     header {
         border-bottom: 1px solid black;
+
+        .header-area {
+            display: flex;
+            flex-direction: row;
+
+            h3 {
+                flex: 1 1 auto;
+            }
+        }
+
+        .native-download {
+            display: flex;
+            flex-direction: row;
+            flex: 0 1 auto;
+
+            max-height: 29px;
+            margin: 1em;
+        }
     }
 
     footer {

@@ -10,8 +10,12 @@ import UserSecurity from './UserSecurity';
 import Generator from './Generator';
 import nativeService from './Native/NativeService';
 import Server from './Server';
+import Help from './Help/Help';
+import getHelp from './Help/helpProvider';
 
 import './App.scss';
+
+const downloadApp = getHelp('appDownload');
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +39,13 @@ class App extends Component {
       <BrowserRouter basename="/robit">
         <div className="App">
           <header>
-            <h3>Robit Client</h3>
+            <div className="header-area">
+              <h3>Robit Client</h3>
+              {!this.state.electron && <div className="native-download">
+                  <a href="https://s3.amazonaws.com/ilusr.com/apps/robitclientnative+Setup+1.0.0.exe" className="button">Get App</a>
+                  <Help message={downloadApp}/>
+                </div> }
+            </div>
           </header>
           <div className="content">
             <div className="sidebar">

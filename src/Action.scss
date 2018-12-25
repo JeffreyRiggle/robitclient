@@ -8,3 +8,10 @@
         padding: $small-padding;
     }
 }
+
+.action-help {
+    margin-right: $default-padding;
+    background-color: #72767d;
+    padding: $small-padding $default-padding;
+    font-style: italic;
+}

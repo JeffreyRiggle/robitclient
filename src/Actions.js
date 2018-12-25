@@ -25,6 +25,7 @@ class Actions extends Component {
           {this.state.actions.map(action => {
             return (
               <div key={action.id} className="item">
+                <span className="action-help">!robit {action.id}</span>
                 <span className="txt">{action.id}</span>
                 <Link className="button edit" to={`/actions/${action.id}`}>Edit</Link>
                 <button onClick={this.removeAction(action)}>Remove</button>

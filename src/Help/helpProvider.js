@@ -13,7 +13,8 @@ let help = new Map([
     ['futureHelp', 'The specific date and time for the action to occur. This is a one time action.'],
     ['dailyHelp', 'The time of day, in your current time zone, that you would like the action to occur.'],
     ['folderHelp', 'The path to a folder on the server that contains music files. Example: C:/Music'],
-    ['deniedMessage', 'The message to send when someone attempts to send an unauthorized request to robit.']
+    ['deniedMessage', 'The message to send when someone attempts to send an unauthorized request to robit.'],
+    ['appDownload', 'In order to run the robit server you need the desktop application. Press Get App to download desktop application.']
 ]);
 
 export default (id) => {

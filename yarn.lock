@@ -770,6 +770,13 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
 
+"@jeffriggle/ipc-bridge-client@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@jeffriggle/ipc-bridge-client/-/ipc-bridge-client-1.0.6.tgz#9cbb6d9035035e0f894db9850b62a4eb59e019e8"
+  integrity sha512-umfNyjNxLkhk6Y884YAFcYFPxZWvmXYJBBlq9RFIaurStm5+lrnDE+wSohhucOfY8AilYBLoDhq9twx4Ojpjqw==
+  dependencies:
+    electron "^4.1.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -803,6 +810,11 @@
     "@babel/preset-react" "^7.0.0"
     "@svgr/core" "^2.4.1"
     loader-utils "^1.1.0"
+
+"@types/node@^10.12.18":
+  version "10.14.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.4.tgz#1c586b991457cbb58fef51bc4e0cfcfa347714b5"
+  integrity sha512-DT25xX/YgyPKiHFOpNuANIQIVvYEwCWXgK2jYYwqgaMrYE6+tq+DtmMwlD3drl6DJbUwtlIDnn0d7tIn/EbXBg==
 
 "@types/node@^8.0.24":
   version "8.10.38"
@@ -2842,6 +2854,15 @@ electron@^3.0.11:
   resolved "https://registry.yarnpkg.com/electron/-/electron-3.0.11.tgz#81e350db741fc0f2997ecb2fef5ed085ca42a723"
   dependencies:
     "@types/node" "^8.0.24"
+    electron-download "^4.1.0"
+    extract-zip "^1.0.3"
+
+electron@^4.1.0:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-4.1.4.tgz#41ba9e041f38c25c62a7db806884410654df058f"
+  integrity sha512-MelOjntJvd33izEjR6H4N/Uii7y535z/b2BuYXJGLNSHL6o1IlyhUQmfiT87kWABayERgeuYERgvsyf956OOFw==
+  dependencies:
+    "@types/node" "^10.12.18"
     electron-download "^4.1.0"
     extract-zip "^1.0.3"
 

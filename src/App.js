@@ -8,7 +8,7 @@ import Music from './Music';
 import Security from './Security';
 import UserSecurity from './UserSecurity';
 import Generator from './Generator';
-import nativeService from './Native/NativeService';
+import {client} from '@jeffriggle/ipc-bridge-client';
 import Server from './Server';
 import Help from './Help/Help';
 import getHelp from './Help/helpProvider';
@@ -21,10 +21,10 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    nativeService.on(nativeService.stateChanged, this.stateChanged.bind(this));
+    client.on(client.availableChanged, this.stateChanged.bind(this));
 
     this.state = {
-      electron: nativeService.available
+      electron: client.available
     }
   }
 

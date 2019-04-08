@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import nativeService from './Native/NativeService';
+import {client} from '@jeffriggle/ipc-bridge-client';
 import {getConfig} from './configManager';
 
 class Server extends Component {
@@ -18,12 +18,12 @@ class Server extends Component {
         this.boundServerState = this._serverStateChanged.bind(this);
         this.boundHealthState = this._healthChanged.bind(this);
 
-        nativeService.subscribeEvent('serverstate', this.boundServerState);
-        nativeService.subscribeEvent('serverhealth', this.boundHealthState);
+        client.subscribeEvent('serverstate', this.boundServerState);
+        client.subscribeEvent('serverhealth', this.boundHealthState);
     }
 
     componentWillUnmount() {
-        nativeService.unsubcribeEvent('serverstate', this.boundServerState);
+        client.unsubcribeEvent('serverstate', this.boundServerState);
     }
 
     _serverStateChanged(state) {
@@ -88,11 +88,11 @@ class Server extends Component {
     }
 
     startServer() {
-        nativeService.sendMessage('startserver', getConfig());
+        client.sendMessage('startserver', getConfig());
     }
 
     stopServer() {
-        nativeService.sendMessage('stopserver');
+        client.sendMessage('stopserver');
     }
 }
 

@@ -50,7 +50,7 @@ class Security extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content-view">
         <h3>Security</h3>
         <div className="input-option">
           <label className="lbl">Access Denied Message</label>

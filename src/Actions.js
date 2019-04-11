@@ -14,7 +14,7 @@ class Actions extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content-view">
         <h3>Actions</h3>
         <div>
             <label>New Action</label>

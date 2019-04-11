@@ -71,7 +71,7 @@ class Action extends Component {
     }
 
     return (
-      <div>
+      <div className="content-view">
         <h4><Link className="button" to={this.backLocation}>Back</Link></h4>
         <h3>Action {this.state.id}</h3>
         <div className="action-selection">

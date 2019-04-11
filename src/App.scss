@@ -66,10 +66,15 @@
         }
     
         .content-area {
-            padding-left: 32px;
+            padding-left: $xl-padding;
             flex: 1 1 auto;
+            display: flex;
             background-color: $content-color;
             color: $text-color;
+
+            .content-view {
+                flex: 1 1 auto;
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ class General extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content-view">
         <h3>General options</h3>
         <div className="input-option">
           <label className="lbl">Token</label>

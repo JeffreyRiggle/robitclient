@@ -18,7 +18,7 @@ class Music extends Component {
 
   render() {
     return (
-      <div className="music-options">
+      <div className="music-options content-view">
         <h3>Music Options</h3>
         <div className="input-option">
           <input className="in" type="text" value={this.state.pendingFolder} onChange={this.updatePendingFolder.bind(this)} />

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {client} from '@jeffriggle/ipc-bridge-client';
 import {getConfig} from './configManager';
+import './Server.scss';
 
 class Server extends Component {
     constructor(props) {
@@ -12,14 +13,17 @@ class Server extends Component {
             errored: false,
             memoryUsage: 'N/A',
             cpuTime: 'N/A',
-            upTime: 'N/A'
+            upTime: 'N/A',
+            data: ''
         }
 
         this.boundServerState = this._serverStateChanged.bind(this);
         this.boundHealthState = this._healthChanged.bind(this);
+        this.boundServerData = this._serverData.bind(this);
 
         client.subscribeEvent('serverstate', this.boundServerState);
         client.subscribeEvent('serverhealth', this.boundHealthState);
+        client.subscribeEvent('serverdata', this.boundServerData);
     }
 
     componentWillUnmount() {
@@ -69,19 +73,30 @@ class Server extends Component {
         });
     }
 
+    _serverData(data) {
+        let newData = `${this.state.data} \r\n ${data}`;
+        this.setState({
+            data: newData
+        });
+    }
+
     render() {
         return (
-            <div>
+            <div className="server-info">
                 <h3>Server</h3>
-                <button disabled={this.state.started || this.state.starting} onClick={this.startServer}>Start</button>
-                <button disabled={!this.state.started} onClick={this.stopServer}>Stop</button>
                 <div>
+                    <button disabled={this.state.started || this.state.starting} onClick={this.startServer}>Start</button>
+                    <button disabled={!this.state.started} onClick={this.stopServer.bind(this)}>Stop</button>
+                </div>
+                <div className="server-details">
                     <h3>Health</h3>
-                    <div>
+                    <div className="server-stats">
                         <p>Up Time: {this.state.upTime}</p>
                         <p>Memory: {this.state.memoryUsage}</p>
                         <p>CPU Time: {this.state.cpuTime}</p>
                     </div>
+                    <h3>Data</h3>
+                    <textarea className="server-log" disabled={true} value={this.state.data}></textarea>
                 </div>
             </div>
         )
@@ -92,7 +107,11 @@ class Server extends Component {
     }
 
     stopServer() {
-        client.sendMessage('stopserver');
+        client.sendMessage('stopserver').then(() => {
+            this.setState({
+                data: ''
+            });
+        });
     }
 }
 

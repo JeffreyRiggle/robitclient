@@ -1,0 +1,23 @@
+@import './Common.scss';
+
+.server-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    margin-bottom: $default-padding;
+
+    .server-details {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+
+        .server-stats {
+            flex: 0 0 auto;
+        }
+
+        .server-log {
+            flex: 1 1 auto;
+            margin-right: $xl-padding;
+        }
+    }
+}

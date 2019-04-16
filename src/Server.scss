@@ -18,6 +18,9 @@
         .server-log {
             flex: 1 1 auto;
             margin-right: $xl-padding;
+            color: lightgreen;
+            background-color: black;
+            border: none;
         }
     }
 }

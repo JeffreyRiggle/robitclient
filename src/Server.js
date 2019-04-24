@@ -14,7 +14,8 @@ class Server extends Component {
             memoryUsage: 'N/A',
             cpuTime: 'N/A',
             upTime: 'N/A',
-            data: ''
+            data: '',
+            serverTypes: []
         }
 
         this.boundServerState = this._serverStateChanged.bind(this);
@@ -24,6 +25,14 @@ class Server extends Component {
         client.subscribeEvent('serverstate', this.boundServerState);
         client.subscribeEvent('serverhealth', this.boundHealthState);
         client.subscribeEvent('serverdata', this.boundServerData);
+    }
+
+    componentDidMount() {
+        client.sendMessage('serverTypes').then(types => {
+            this.setState({
+                serverTypes: types
+            });
+        });
     }
 
     componentWillUnmount() {
@@ -85,7 +94,7 @@ class Server extends Component {
             <div className="server-info">
                 <h3>Server</h3>
                 <div>
-                    <button disabled={this.state.started || this.state.starting} onClick={this.startServer}>Start</button>
+                    { this.renderStart() }
                     <button disabled={!this.state.started} onClick={this.stopServer.bind(this)}>Stop</button>
                 </div>
                 <div className="server-details">
@@ -102,8 +111,33 @@ class Server extends Component {
         )
     }
 
+    renderStart() {
+        if (!this.state.serverTypes.length) {
+            return <button disabled={this.state.started || this.state.starting} onClick={this.startServer.bind(this)}>Start</button>
+        }
+
+        return (
+            <span>
+                <button 
+                    disabled={this.state.started || this.state.starting} 
+                    onClick={() => this.setState({serverSelect: !this.state.serverSelect})}
+                >Start \/</button>
+                { this.state.serverSelect &&
+                  <ul className="popover">
+                      {this.state.serverTypes.map(value => {
+                          return <li key={value} className="popover-item"><a onClick={this.startServer.bind(this)}>{value}</a></li>
+                      })}
+                  </ul>
+                }
+            </span>
+        );
+    }
+
     startServer() {
         client.sendMessage('startserver', getConfig());
+        this.setState({
+            serverSelect: false
+        });
     }
 
     stopServer() {

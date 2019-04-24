@@ -104,3 +104,20 @@ select {
 a.button {
     text-decoration: none;
 }
+
+.popover {
+    position: absolute;
+    margin: 0;
+    list-style: none;
+    padding: $default-padding;
+    background-color: $input-color;
+
+    .popover-item {
+        padding: 0 $default-padding;
+
+        &:hover {
+            background-color: $action-color;
+            cursor: pointer;
+        }
+    }
+}

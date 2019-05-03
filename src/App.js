@@ -12,6 +12,7 @@ import {client} from '@jeffriggle/ipc-bridge-client';
 import Server from './Server';
 import Help from './Help/Help';
 import getHelp from './Help/helpProvider';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import './App.scss';
 

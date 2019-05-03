@@ -97,23 +97,14 @@ class Server extends Component {
                     { this.renderStart() }
                     <button disabled={!this.state.started} onClick={this.stopServer.bind(this)}>Stop</button>
                 </div>
-                <div className="server-details">
-                    <h3>Health</h3>
-                    <div className="server-stats">
-                        <p>Up Time: {this.state.upTime}</p>
-                        <p>Memory: {this.state.memoryUsage}</p>
-                        <p>CPU Time: {this.state.cpuTime}</p>
-                    </div>
-                    <h3>Data</h3>
-                    <textarea className="server-log" disabled={true} value={this.state.data}></textarea>
-                </div>
+                { this.renderDetails() }
             </div>
         )
     }
 
     renderStart() {
         if (!this.state.serverTypes.length) {
-            return <button disabled={this.state.started || this.state.starting} onClick={this.startServer.bind(this)}>Start</button>
+            return <button disabled={this.state.started || this.state.starting} onClick={this.startServer('local')}>Start</button>
         }
 
         return (
@@ -121,11 +112,11 @@ class Server extends Component {
                 <button 
                     disabled={this.state.started || this.state.starting} 
                     onClick={() => this.setState({serverSelect: !this.state.serverSelect})}
-                >Start \/</button>
+                >Start <i className="fas fa-caret-down"></i></button>
                 { this.state.serverSelect &&
                   <ul className="popover">
                       {this.state.serverTypes.map(value => {
-                          return <li key={value} className="popover-item"><a onClick={this.startServer.bind(this)}>{value}</a></li>
+                          return <li key={value} className="popover-item"><a onClick={this.startServer(value)}>{value}</a></li>
                       })}
                   </ul>
                 }
@@ -133,11 +124,46 @@ class Server extends Component {
         );
     }
 
-    startServer() {
-        client.sendMessage('startserver', getConfig());
-        this.setState({
-            serverSelect: false
-        });
+    renderDetails() {
+        if (this.state.starting) {
+            return (
+                <div className="server-details">
+                    <h1>Starting</h1>
+                    <div className="fa-4x">
+                        <i className="fas fa-sync fa-spin"></i>
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <div className="server-details">
+                <h3>Health</h3>
+                <div className="server-stats">
+                    <p>Up Time: {this.state.upTime}</p>
+                    { this.state.serverType === 'Local' && <p>Memory: {this.state.memoryUsage}</p> }
+                    { this.state.serverType === 'Local' && <p>CPU Time: {this.state.cpuTime}</p> }
+                </div>
+                <h3>Data</h3>
+                <textarea className="server-log" disabled={true} value={this.state.data}></textarea>
+            </div>
+        );
+    }
+
+    startServer(type) {
+        return () => {
+            client.sendMessage('startserver', {
+                type: type,
+                config: getConfig()
+            }).then(() => {
+                this._serverStateChanged('started');
+            });
+
+            this.setState({
+                serverSelect: false,
+                serverType: type
+            });
+        }
     }
 
     stopServer() {

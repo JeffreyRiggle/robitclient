@@ -1,0 +1,70 @@
+on: 
+    push:
+        branches:
+            - master
+
+name: Create Release
+
+jobs:
+
+  build:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+          node-version: '10.x'
+
+    - name: Check out code
+      uses: actions/checkout@v1
+    
+    - name: Install yarn
+      run: npm install -g yarn
+
+    - name: Install
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Package
+      run: |
+        tar -czvf app.tar.gz build
+        zip -r app.zip build
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: 1.0.${{ github.run_number }}
+        release_name: Release 1.0.${{ github.run_number }}
+        body: |
+          New release
+        draft: false
+        prerelease: false
+    
+    - name: Upload App tar
+      id: upload_app_tar
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./app.tar.gz
+        asset_name: app.tar.gz
+        asset_content_type: application/tar+gzip
+    
+    - name: Upload App zip
+      id: upload_app_zip
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./app.zip
+        asset_name: app.zip
+        asset_content_type: application/zip

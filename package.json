@@ -5,7 +5,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@jeffriggle/ipc-bridge-client": "^1.0.6",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "node-sass": "^4.10.0",
     "react": "^16.6.3",
     "react-datepicker": "^2.0.0",

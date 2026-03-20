@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 
 import './Help.scss';
 
@@ -16,8 +16,8 @@ class Help extends Component {
     render() {
         return (
             <div className="help">
-                <div data-tip={this.state.helpText} className="button">?</div>
-                <ReactTooltip effect="solid"/>
+                <div data-tooltip-id="help-tooltip" data-tooltip-content={this.state.helpText} className="button">?</div>
+                <Tooltip id="help-tooltip" effect="solid"/>
             </div>
         )
     }

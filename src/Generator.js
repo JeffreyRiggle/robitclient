@@ -9,7 +9,7 @@ class Generator extends Component {
                 <div className="button">
                     <label>
                         <span className="load-txt">Load</span>
-                        <input type="file" onChange={this.fileSelected.bind(this)} className="loadfile" ref="input"/>
+                        <input type="file" onChange={this.fileSelected.bind(this)} className="loadfile"/>
                     </label>
                 </div>
                 <button onClick={saveConfig}>Generate</button>

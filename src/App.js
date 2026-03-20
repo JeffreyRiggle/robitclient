@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, NavLink, Route } from 'react-router-dom';
+import { BrowserRouter, NavLink, Outlet, Route, Routes } from 'react-router-dom';
 import General from './General';
 import Actions from './Actions';
 import Action from './Action';
@@ -51,7 +51,7 @@ class App extends Component {
           <div className="content">
             <div className="sidebar">
               <ul className="sidebar-list">
-                <li><NavLink exact to="/" className="sidebar-item">General</NavLink></li>
+                <li><NavLink exact="true" to="/" className="sidebar-item">General</NavLink></li>
                 <li><NavLink to="/actions" className="sidebar-item">Actions</NavLink></li>
                 <li><NavLink to="/deferredActions" className="sidebar-item">Defered Actions</NavLink></li>
                 <li><NavLink to="/music" className="sidebar-item">Music</NavLink></li>
@@ -60,16 +60,19 @@ class App extends Component {
               </ul>
             </div>
             <div className="content-area">
-              <Route exact path="/" component={General}/>
-              <Route exact path="/actions" component={Actions}/>
-              <Route exact path="/actions/:id" component={Action}/>
-              <Route path="/actions/:rootid/:id" component={Action}/>
-              <Route path="/deferred/action/:deferredid" component={Action}/>
-              <Route path="/deferredActions" component={DeferredActions}/>
-              <Route path="/music" component={Music}/>
-              <Route exact path="/security" component={Security}/>
-              <Route exact path="/security/:id" component={UserSecurity}/>
-              {this.state.electron && <Route exact path="/server" component={Server}/>}
+              <Routes>
+                <Route exact="true" path="/" Component={General}/>
+                <Route exact="true" path="/actions" Component={Actions}/>
+                <Route exact="true" path="/actions/:id" Component={Action}/>
+                <Route path="/actions/:rootid/:id" Component={Action}/>
+                <Route path="/deferred/action/:deferredid" Component={Action}/>
+                <Route path="/deferredActions" Component={DeferredActions}/>
+                <Route path="/music" Component={Music}/>
+                <Route exact="true" path="/security" Component={Security}/>
+                <Route exact="true" path="/security/:id" Component={UserSecurity}/>
+                {this.state.electron && <Route exact="true" path="/server" Component={Server}/>}
+              </Routes>
+              <Outlet />
             </div>
           </div>
           <footer>

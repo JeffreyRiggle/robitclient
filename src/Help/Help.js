@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import { Tooltip } from 'react-tooltip';
 
 import './Help.scss';

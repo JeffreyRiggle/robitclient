@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {getGreeting, setGreeting, getToken, setToken} from './configManager';
 import Help from './Help/Help';
 import getHelp from './Help/helpProvider';

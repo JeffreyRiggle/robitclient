@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import './IntervalPicker.scss';
 
 const dayInterval = 1 * 24 * 60 * 60 * 1000;

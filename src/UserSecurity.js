@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {getAccessForUsers, knownActions} from './configManager';
 import { useParams } from "react-router-dom";

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Help from '../Help/Help';
 import getHelp from '../Help/helpProvider';
 

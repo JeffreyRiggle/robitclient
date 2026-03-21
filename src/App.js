@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { BrowserRouter, NavLink, Outlet, Route, Routes } from 'react-router-dom';
 import General from './General';
 import Actions from './Actions';

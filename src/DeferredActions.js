@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {getDeferredActions, addDeferredAction, removeDeferredAction} from './configManager';
 import DeferredAction from './DeferredAction';
 import './DeferredActions.scss';

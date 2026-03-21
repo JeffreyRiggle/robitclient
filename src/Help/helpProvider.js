@@ -17,6 +17,8 @@ let help = new Map([
     ['appDownload', 'In order to run the robit server you need the desktop application. Press Get App to download desktop application.']
 ]);
 
-export default (id) => {
+const getHelp = (id) => {
     return help.get(id);
-}
+};
+
+export default getHelp;

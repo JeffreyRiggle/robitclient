@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import Help from '../Help/Help';

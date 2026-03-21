@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {getActionById, getActionFromDeferredId} from './configManager';
 import BroadcastAction from './Actions/BroadcastAction';
@@ -13,6 +13,7 @@ import {
     sanitizeHttp,
     sanitizeMulti 
 } from './Actions/actionSanitizer';
+import { useParams } from "react-router-dom";
 
 import './Action.scss';
 
@@ -21,44 +22,36 @@ class Action extends Component {
     super(props);
 
     this.backLocation = '/actions';
-    let action = this.getAction(this.props.match);
+    let action = this.getAction(this.props.params);
 
     this.action = action;
 
     this.state = {
-      selectedType: (action && action.type) || 'broadcast',
-      id: (props.match && props.match.params && props.match.params.id) || 'unknown',
-      message: action && action.message,
-      channelId: action && action.channel
+      selectedType: action?.type ?? 'broadcast',
+      id: props.params?.id ?? props.params?.deferredid ?? 'unknown',
+      message: action?.message,
+      channelId: action?.channel
     };
   }
 
-  getAction(match) {
-    if (!match || !match.params || (!match.params.id && !match.params.deferredid)) {
+  getAction(params) {
+    if (!params?.id && !params?.deferredid) {
         return;
     }
 
-    if (match.params.deferredid) {
+    if (params?.deferredid) {
         this.backLocation = '/deferredActions';
-        return getActionFromDeferredId(match.params.deferredid);
+        return getActionFromDeferredId(params.deferredid);
     }
 
-    if (!match.params.rootid) {
-        return getActionById(match.params.id);
+    if (!params?.rootid) {
+        return getActionById(params.id);
     }
 
-    let root = getActionById(match.params.rootid);
-
-    let retVal;
+    let root = getActionById(params?.rootid);
     this.backLocation = `/actions/${root.id}`;
 
-    root.action.actions.forEach(act => {
-        if (act.id === match.params.id) {
-            retVal = act;
-        }
-    });
-    
-    return retVal;
+    return root.action.actions.find(act => act.id === params.id);
   }
 
   render() {
@@ -128,4 +121,12 @@ class Action extends Component {
   }
 }
 
-export default Action;
+
+const ParamsAction = (props) => (
+    <Action
+        {...props}
+        params={useParams()}
+    />
+);
+
+export default ParamsAction;

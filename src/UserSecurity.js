@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {getAccessForUsers, knownActions} from './configManager';
+import { useParams } from "react-router-dom";
 
 class UserSecurity extends Component {
     constructor(props) {
         super(props);
 
-        this.user = this.getUser(this.props.match.params.id);
+        this.user = this.getUser(this.props.params.id);
 
         if (!this.user) {
             this.state = { found: false };
@@ -26,14 +27,7 @@ class UserSecurity extends Component {
     }
 
     getUser(userId) {
-        let retVal;
-        getAccessForUsers().forEach(user => {
-            if (!retVal && (user.name === userId)) {
-                retVal = user;
-            }
-        });
-
-        return retVal;
+        return getAccessForUsers().find(user => user.name === userId);
     }
 
     getActionNames() {
@@ -115,4 +109,11 @@ class UserSecurity extends Component {
     }
 }
 
-export default UserSecurity;
+const UserSecurityParams = (props) => (
+    <UserSecurity
+        {...props}
+        params={useParams()}
+    />
+);
+
+export default UserSecurityParams;

@@ -109,9 +109,11 @@ class UserSecurity extends Component {
     }
 }
 
-export default (props) => (
+const UserSecurityParams = (props) => (
     <UserSecurity
         {...props}
         params={useParams()}
     />
 );
+
+export default UserSecurityParams;

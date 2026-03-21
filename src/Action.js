@@ -122,9 +122,11 @@ class Action extends Component {
 }
 
 
-export default (props) => (
+const ParamsAction = (props) => (
     <Action
         {...props}
         params={useParams()}
     />
 );
+
+export default ParamsAction;
